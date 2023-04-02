@@ -11,10 +11,18 @@ interface TextareaProps {
 export const Textarea = ({ placeholderProp, nameProps, isRequired }: TextareaProps) => {
     const { register, formState: {errors} } = useFormContext();
 
+    let val = false;
+
+    try {
+        if (nameProps.split('.').reduce((acc, key) => acc[key], errors)) val = true;
+    } catch {
+        val = false;
+    }
+
     return (
         <label className={classNames(styles['label'])}>
             <textarea
-                className={classNames(styles['textarea'], {[styles['textarea--error']]: errors[nameProps] })}
+                className={classNames(styles['textarea'], {[styles['textarea--error']]: val })}
                 placeholder={placeholderProp}
                 {...register(nameProps, { required: isRequired })}
             />

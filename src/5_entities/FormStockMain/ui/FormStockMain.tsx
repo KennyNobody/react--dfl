@@ -18,8 +18,6 @@ interface FormUserInfoProps {
 
 export const FormStockMain = ({innerRef, buttonText}: FormUserInfoProps) => {
     let context = useContext(FormContext);
-
-    console.log(context);
     const { control, getValues, formState: {errors} } = useFormContext();
 
     return (

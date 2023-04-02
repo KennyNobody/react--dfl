@@ -28,6 +28,7 @@ export const FormRegular = () => {
     const [alertVisible, setAlertVisible] = useState<boolean>(false);
     const [sectionAdded, setSectionAdded] = useState<boolean>(false);
     const [plugDisabled, setPlugDisabled] = useState<boolean>(false);
+    const [itemsList, setItemsList] = useState<number>(1);
 
     const formMethods = useForm<FormInterface>({
         mode: "onChange",
@@ -53,6 +54,10 @@ export const FormRegular = () => {
             tabUserRef?.current?.getAttribute('data-section-name');
 
         return !tabName || validateSection(tabName, formMethods.formState.errors);
+    }
+
+    const addItem = () => {
+        setItemsList(itemsList + 1);
     }
 
     const setActiveTab = (index: number) => {
@@ -152,7 +157,9 @@ export const FormRegular = () => {
                     plugMode: plugDisabled,
                     nextSection,
                     showPlug,
-                    submitData
+                    submitData,
+                    addItem,
+                    itemsList
                 }}
             >
                 <Wrapper

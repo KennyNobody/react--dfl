@@ -9,6 +9,13 @@ import {ButtonNext} from "6_shared/ui/ButtonNext/ui/ButtonNext";
 import {SectionAdd} from "5_entities/SectionAdd/SectionAdd";
 import {FormContext} from "3_widgets/FormRegular/context/context";
 import {ItemCargo} from "6_shared/ui/ItemCargo/ItemCargo";
+import {Input} from "6_shared/ui/Input/ui/Input";
+import {InputWrapper} from "6_shared/ui/InputWrapper/ui/InputWrapper";
+import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
+import stylesTabs from '6_shared/styles/tabs.module.scss';
+import {Textarea} from "6_shared/ui/Textarea/ui/Textarea";
+import {transportType} from "6_shared/data/select";
+import {SelectLib} from "6_shared/ui/SelectLib/ui/SelectLib";
 
 interface FormCargoProps {
     innerRef: any;
@@ -18,6 +25,135 @@ interface FormCargoProps {
 export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
     let context = useContext(FormContext);
     const {getValues} = useFormContext();
+
+    const renderList = () => {
+        const components = [];
+
+        for (let i = 1; i <= context.itemsList; i++) {
+            components.push(
+                <div className={styles['section']}  key={i}>
+                    <ItemCargo context={context} index={i}>
+                        <div className={classNames(grid['columns'])}>
+                            <div className={classNames(grid['columns__col--6'], grid['columns__col--mob-2'])}>
+                                <InputWrapper title='Название груза' isRequired={true}>
+                                    <Input
+                                        isRequired={true}
+                                        placeholderProp={'Укажите название'}
+                                        typeProp={'text'}
+                                        name={`items.item-${i}.name`}
+                                    />
+                                </InputWrapper>
+                            </div>
+                            <div className={classNames(grid['columns__col--6'], grid['columns__col--mob-2'])}>
+                                <InputWrapper title='Вес' isRequired={true}>
+                                    <Input
+                                        isRequired={true}
+                                        placeholderProp={'Укажите вес'}
+                                        typeProp={'number'}
+                                        name={`items.item-${i}.weight`}
+                                    />
+                                </InputWrapper>
+                            </div>
+                            <div className={classNames(grid['columns__col--12'], grid['columns__col--mob-2'])}>
+                                <Tabs
+                                    selectedTabClassName={classNames(stylesTabs['tab--active'])}
+                                >
+                                    <TabList className={classNames(stylesTabs['header'])}>
+                                        <Tab className={classNames(stylesTabs['tab'])}>Размер</Tab>
+                                        <Tab className={classNames(stylesTabs['tab'])}>Объем</Tab>
+                                    </TabList>
+
+                                    <TabPanel className={classNames(stylesTabs['content'])}>
+                                        <Input
+                                            isRequired={true}
+                                            placeholderProp={'Общий объем'}
+                                            typeProp={'text'}
+                                            caption={'М³'}
+                                            name={`items.item-${i}.volume`}
+                                        />
+                                    </TabPanel>
+                                    <TabPanel className={classNames(stylesTabs['content'])}>
+                                        <Input
+                                            isRequired={true}
+                                            placeholderProp={'Длина'}
+                                            typeProp={'text'}
+                                            name={`items.item-${i}.length`}
+                                        />
+                                        <Input
+                                            isRequired={true}
+                                            placeholderProp={'Ширина'}
+                                            typeProp={'text'}
+                                            name={`items.item-${i}.width`}
+                                        />
+                                        <Input
+                                            isRequired={true}
+                                            placeholderProp={'Высота'}
+                                            typeProp={'text'}
+                                            caption={'М'}
+                                            name={`items.item-${i}.height`}
+                                        />
+                                    </TabPanel>
+                                </Tabs>
+                            </div>
+                            <div className={classNames(grid['columns__col--6'], grid['columns__col--mob-2'])}>
+                                <InputWrapper title='Оценочная стоимость груза' isRequired={true}>
+                                    <Input
+                                        isRequired={true}
+                                        placeholderProp={'Укажите стоимость'}
+                                        typeProp={'number'}
+                                        caption={'₽'}
+                                        name={`items.item-${i}.price`}
+                                    />
+                                </InputWrapper>
+                            </div>
+                            <div className={classNames(grid['columns__col--6'], grid['columns__col--mob-2'])}>
+                                <InputWrapper title='Количество грузовых мест' isRequired={true}>
+                                    <Input
+                                        isRequired={true}
+                                        placeholderProp={'Укажите количество'}
+                                        typeProp={'number'}
+                                        name={`items.item-${i}.places`}
+                                    />
+                                </InputWrapper>
+                            </div>
+                            <div className={classNames(grid['columns__col--6'], grid['columns__col--mob-2'])}>
+                                <InputWrapper title='Таможенный код (6 симв.)' isRequired={true}>
+                                    <Input
+                                        isRequired={true}
+                                        placeholderProp={'Укажите таможенный код'}
+                                        typeProp={'text'}
+                                        name={`items.item-${i}.code`}
+                                    />
+                                </InputWrapper>
+                            </div>
+                            <div className={classNames(grid['columns__col--6'], grid['columns__col--mob-2'])}>
+                                <InputWrapper title='Таможенный код (6 симв.)' isRequired={true}>
+                                    <SelectLib
+                                        listArr={transportType}
+                                        name={`items.item-${i}.services`}
+                                        placeholder={'Выберите услуги'}
+                                        isRequired={true}
+                                        isMulti={true}
+                                    />
+                                </InputWrapper>
+                            </div>
+                            <div className={classNames(grid['columns__col--12'], grid['columns__col--mob-2'])}>
+                                <InputWrapper title='Описание груза' isRequired={true}>
+                                    <Textarea
+                                        isRequired={true}
+                                        nameProps={`items.item-${i}.caption`}
+                                        placeholderProp={'Введите описание'}
+                                    />
+                                </InputWrapper>
+                            </div>
+                        </div>
+                    </ItemCargo>
+                </div>
+            );
+        }
+
+        return components;
+    };
 
     const mainForm = (
         <>
@@ -52,11 +188,7 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                     />
                 </div>
             </div>
-            <div>
-                <ItemCargo>
-                    ТЫК
-                </ItemCargo>
-            </div>
+            {renderList()}
         </>
     )
 

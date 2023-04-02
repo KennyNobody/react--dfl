@@ -1,6 +1,7 @@
 import styles from "./Input.module.scss";
 import classNames from "classnames";
 import {useFormContext, UseFormRegister} from "react-hook-form";
+import {useEffect, useState} from "react";
 
 type TypeProp = 'text' | 'number';
 
@@ -17,10 +18,18 @@ export const Input = ({placeholderProp, typeProp, caption, defaultValue, name, i
     const { register, formState: {errors} } = useFormContext();
     const activeClass = caption ? styles['input--caption'] : '';
 
+    let val = false;
+
+    try {
+        if (name.split('.').reduce((acc, key) => acc[key], errors)) val = true;
+    } catch {
+        val = false;
+    }
+
     return (
         <label className={classNames(styles['label'])}>
             <input
-                className={classNames(styles['input'], {[styles['input--error']]: errors[name] }, activeClass)}
+                className={classNames(styles['input'], {[styles['input--error']]: val }, activeClass)}
                 name={name}
                 type={typeProp}
                 placeholder={placeholderProp}

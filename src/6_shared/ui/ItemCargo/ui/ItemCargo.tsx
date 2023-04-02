@@ -5,17 +5,22 @@ import React, {ReactNode} from "react";
 
 interface ItemCargoProps {
     children: ReactNode;
-    buttonEvent: React.MouseEventHandler<HTMLButtonElement>;
+    context: any;
+    index: number;
 }
 
-export const ItemCargo = ({children, buttonEvent}: ItemCargoProps) => {
+export const ItemCargo = ({children, context, index}: ItemCargoProps) => {
     return (
         <div className={classNames(style['wrapper'])}>
             <div className={classNames(style['header'])}>
                 <p className={classNames(style['title'])}>
-                    Груз №1
+                    Груз №{index}
                 </p>
-                <button className={classNames(style['button'])} onClick={buttonEvent}>
+                <button
+                    type={"button"}
+                    onClick={context.addItem}
+                    className={classNames(style['button'])}
+                >
                     <span className={classNames(style['caption'])}>
                         Добавить груз
                     </span>

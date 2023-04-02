@@ -95,10 +95,24 @@ const validateScheme = {
         'pastExperience',
         'cargoDescription',
         'pastExperience',
-        'deliveriesAlreadyBeen'
+        'deliveriesAlreadyBeen',
+        'items'
     ],
     'cargoRegularAdditional': [
 
+    ],
+    'item': [
+        'name',
+        'weight',
+        'volume',
+        'services',
+        'length',
+        'width',
+        'height',
+        'price',
+        'places',
+        'code',
+        'caption'
     ]
 }
 

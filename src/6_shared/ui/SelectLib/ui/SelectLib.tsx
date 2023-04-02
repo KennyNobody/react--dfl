@@ -22,6 +22,15 @@ interface SelectProps {
 export const SelectLib = ({listArr, name, placeholder, isRequired, isDisabled, onChange, isMulti}: SelectProps) => {
     const { control, formState: {errors} } = useFormContext<any>();
 
+    let val = false;
+
+    try {
+        if (name.split('.').reduce((acc, key) => acc[key], errors)) val = true;
+    } catch {
+        val = false;
+    }
+
+
     return (
         <label className={classNames(styles['label'])}>
             <Controller
@@ -32,7 +41,7 @@ export const SelectLib = ({listArr, name, placeholder, isRequired, isDisabled, o
                     <Select
                         {...field}
                         unstyled
-                        className={classNames('react-select', {'error': errors[name] })}
+                        className={classNames('react-select', {'error': val })}
                         classNamePrefix={classNames('react-select')}
                         options={listArr}
                         placeholder={placeholder}
