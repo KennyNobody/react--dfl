@@ -1,0 +1,11 @@
+.form {
+    &__content {
+
+    }
+}
+
+@media (max-width: 700px) {
+    .form {
+        margin-bottom: 20px;
+    }
+}

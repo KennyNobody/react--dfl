@@ -1,0 +1,19 @@
+.article-info {
+    gap: 2px 12px;
+    display: flex;
+    font-size: 12px;
+    color: var(--text-secondary-2);
+
+    &--small {
+        .article-info {
+            &__column {
+                flex: 1 1;
+            }
+
+        }
+    }
+
+    &--full {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,32 @@
+.block {
+    bottom: 0;
+    left: 100%;
+    width: 50vw;
+    height: 200vh;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-color: var(--gray-bg);
+
+    &--ground {
+        background-position: left 12px bottom 12px;
+        background-image: url('6_shared/assets/images/picture-ground.svg');
+    }
+    &--air {
+        background-position: left 32px bottom 37px;
+        background-image: url('6_shared/assets/images/picture-air.svg');
+    }
+    &--sea {
+        background-position: left 46px bottom 29px;
+        background-image: url('6_shared/assets/images/picture-sea.svg');
+    }
+    &--stock {
+        background-position: left 32px bottom 18px;
+        background-image: url('6_shared/assets/images/picture-stock.svg');
+    }
+}
+
+@media (max-width: 700px) {
+    .block {
+        display: none;
+    }
+}

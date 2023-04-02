@@ -1,0 +1,32 @@
+.wrapper {
+    padding: 20px;
+    border-radius: 2px;
+    background: var(--white-bg);
+    box-shadow: 0 0 50px -1px rgba(96, 107, 143, 0.16);
+}
+
+.header {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--gray-bg);
+}
+
+.main {
+    padding-top: 3px;
+    position: relative;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--blue-primary);
+}
+
+.caption {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--text-primary);
+}
+

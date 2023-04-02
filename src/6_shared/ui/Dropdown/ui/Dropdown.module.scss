@@ -1,0 +1,52 @@
+.dropdown {
+    &__header {
+        width: 100%;
+        border: none;
+        display: flex;
+        cursor: pointer;
+        min-height: 16px;
+        background: none;
+        padding: 0 10px 0 0;
+        align-items: center;
+        font-family: inherit;
+        justify-content: space-between;
+    }
+
+    &__title {
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1.1;
+        color: var(--blue-primary);
+    }
+
+    &__icon {
+        width: 10px;
+        height: 6px;
+        display: block;
+        transition: 0.3s all;
+        fill: var(--text-secondary-2);
+    }
+
+    &__main {
+        height: 0;
+        overflow: hidden;
+        padding-bottom: 12px;
+        transition: 0.3s max-height;
+    }
+
+    &__content {
+        padding-top: 12px;
+    }
+
+    &--active {
+        .dropdown {
+            &__icon {
+                transform: rotate(180deg);
+            }
+
+            &__main {
+                height: auto;
+            }
+        }
+    }
+}

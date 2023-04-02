@@ -1,0 +1,58 @@
+{
+  "name": "react--dfl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "webpack serve --open --env port=3001",
+    "build:prod": "webpack --env mode=production",
+    "build:dev": "webpack --env mode=development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KennyNobody/react--dfl.git"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "webpack"
+  ],
+  "author": "Egor Badulin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KennyNobody/react--dfl/issues"
+  },
+  "homepage": "https://github.com/KennyNobody/react--dfl#readme",
+  "devDependencies": {
+    "@svgr/webpack": "^6.5.1",
+    "@types/node": "^18.15.2",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@types/webpack": "^5.28.0",
+    "@types/webpack-dev-server": "^4.7.2",
+    "css-loader": "^6.7.3",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.7.3",
+    "sass": "^1.59.2",
+    "sass-loader": "^13.2.0",
+    "style-loader": "^3.3.2",
+    "ts-loader": "^9.4.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5",
+    "webpack": "^5.76.1",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "@types/react-datepicker": "^4.10.0",
+    "classnames": "^2.3.2",
+    "react": "^18.2.0",
+    "react-datepicker": "^4.10.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.7",
+    "react-select": "^5.7.0",
+    "react-tabs": "^6.0.0",
+    "swiper": "^8.4.7"
+  }
+}

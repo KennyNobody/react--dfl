@@ -1,0 +1,33 @@
+.button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    display: flex;
+    flex-shrink: 0;
+    cursor: pointer;
+    border-radius: 32px;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s background-color;
+    background-color: var(--blue-primary);
+
+    &:hover {
+        background-color: var(--blue-resolution);
+    }
+
+    svg {
+        width: 3px;
+        height: 14px;
+        flex-shrink: 0;
+        display: block;
+        transition: 0.3s fill;
+        fill: var(--text-white);
+    }
+
+    &--bottom {
+        z-index: 1;
+        right: -11px;
+        bottom: -26px;
+        position: absolute;
+    }
+}

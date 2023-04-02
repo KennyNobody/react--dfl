@@ -1,0 +1,20 @@
+.page {
+    height: 100%;
+    display: flex;
+    position: relative;
+
+    flex-direction: column;
+    justify-content: flex-end;
+
+    &--regular {
+        padding-bottom: 260px;
+    }
+
+    &--stock {
+        padding-bottom: 286px;
+    }
+
+    &--customs {
+        padding-bottom: 200px;
+    }
+}

@@ -1,0 +1,28 @@
+.block {
+
+}
+
+.title {
+    font-size: 12px;
+    font-weight: 500;
+    overflow: hidden;
+    margin-bottom: 8px;
+    //white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--blue-primary);
+}
+
+@media (max-width: 700px) {
+    .title {
+
+    }
+}
+
+.caption {
+    font-size: 12px;
+    font-weight: 400;
+    overflow: hidden;
+    //white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--text-secondary-2);
+}

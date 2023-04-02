@@ -1,0 +1,19 @@
+.scrollbar {
+    scrollbar-width: thin;
+    scrollbar-gutter: stable both-edges;
+    scrollbar-color: var(--blue-bg-hover) var(--white-bg);
+
+    &::-webkit-scrollbar {
+        width: 14px;               /* width of the entire scrollbar */
+    }
+
+    &::-webkit-scrollbar-track {
+        //background: orange;        /* color of the tracking area */
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 20px;       /* roundness of the scroll thumb */
+        border: 6px solid var(--white-bg);  /* creates padding around scroll thumb */
+        background-color: var(--blue-bg-hover);    /* color of the scroll thumb */
+    }
+}

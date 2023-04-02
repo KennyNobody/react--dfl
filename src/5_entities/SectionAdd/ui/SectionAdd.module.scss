@@ -1,0 +1,51 @@
+.content {
+    height: 100%;
+    display: flex;
+    padding-top: 20px;
+    text-align: center;
+    flex-direction: column;
+}
+
+.picture {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    justify-content: center;
+}
+
+.icon {
+    height: auto;
+    width: 250px;
+    display: block;
+}
+
+.title {
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--blue-primary);
+}
+
+.caption {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 44px;
+    color: var(--text-primary);
+}
+
+.button {
+    display: flex;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    min-height: 40px;
+    background: none;
+    border-radius: 2px;
+    align-items: center;
+    font-family: inherit;
+    justify-content: center;
+    color: var(--text-secondary-2);
+    border: 1px solid var(--text-secondary-2);
+}

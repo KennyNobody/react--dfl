@@ -1,0 +1,54 @@
+.link {
+    gap: 6px;
+    width: 100%;
+    padding: 8px;
+    border: none;
+    display: flex;
+    cursor: pointer;
+    min-height: 52px;
+    text-align: left;
+    background: none;
+    align-items: center;
+    font-family: inherit;
+    transition: 0.3s all;
+    color: var(--text-secondary-2);
+
+    &__text {
+        font-size: 12px;
+    }
+
+    svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        display: block;
+        transition: 0.3s fill;
+        fill: var(--blue-primary);
+    }
+
+    &--active {
+        font-weight: 500;
+        color: var(--blue-primary);
+        background-color: var(--gray-bg);
+    }
+
+    &:hover {
+        background-color: var(--gray-bg);
+    }
+}
+
+@media (max-width: 700px) {
+    .link {
+        gap: 4px;
+        width: fit-content;
+        padding: 12px 12px 12px 8px;
+
+        &__text {
+            font-size: 14px;
+        }
+
+        &--active {
+            font-weight: 400;
+        }
+    }
+}

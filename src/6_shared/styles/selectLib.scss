@@ -1,0 +1,114 @@
+// TODO Стилизовать поля для множественного выбора
+
+.react-select {
+    &__control {
+        width: 100%;
+        height: 38px;
+        outline: none;
+        display: block;
+        font-size: 12px;
+        cursor: pointer;
+        border-radius: 2px;
+        white-space: nowrap;
+        transition: 0.3s all;
+        padding: 0 12px 0 12px;
+        text-overflow: ellipsis;
+        color: var(--text-primary);
+        font-family: var(--font-main);
+        background-color: var(--gray-bg);
+        border: 1px solid rgba(233, 233, 242, 0);
+
+        &::placeholder {
+            font-family: var(--font-main);
+            color: var(--text-secondary-2);
+        }
+
+        &--is-focused {
+            border-color: var(--blue-bg-hover);
+        }
+    }
+
+    &__value-container {
+        font-size: 12px;
+        color: var(--text-primary);
+    }
+
+    &__indicators {
+        svg {
+            opacity: 1;
+            width: 16px;
+            height: 16px;
+            transition: 0.3s opacity;
+            fill: var(--text-secondary-2);
+        }
+    }
+
+    &__menu {
+        //height: 160px;
+        //overflow: hidden;
+        background-color: var(--white-bg);
+    }
+
+    &__menu-list {
+        padding: 0;
+        max-height: 160px !important;
+        scrollbar-width: thin;
+        //scrollbar-gutter: stable both-edges;
+        scrollbar-color: var(--blue-bg-hover) var(--white-bg);
+
+        &::-webkit-scrollbar {
+            width: 14px; /* width of the entire scrollbar */
+        }
+
+        &::-webkit-scrollbar-track {
+            //background: orange;        /* color of the tracking area */
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: 20px; /* roundness of the scroll thumb */
+            border: 6px solid var(--white-bg); /* creates padding around scroll thumb */
+            background-color: var(--blue-bg-hover); /* color of the scroll thumb */
+        }
+    }
+
+    &__option {
+        line-height: 1.3;
+        padding: 6px 12px;
+        transition: 0.3s all;
+        cursor: pointer !important;
+        font-size: 12px !important;
+        color: var(--text-primary);
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    &--is-disabled {
+        opacity: 0.6;
+
+        .react-select {
+            &__control {
+                border-color: rgba(223, 223, 242, 0);
+            }
+
+            &__value-container {
+                color: var(--text-secondary-2);
+            }
+
+            &__indicators {
+                svg {
+                    opacity: 0;
+                }
+            }
+        }
+    }
+
+    &.error {
+        .react-select {
+            &__control {
+                border-color: var(--error);
+            }
+        }
+    }
+}

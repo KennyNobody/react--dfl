@@ -1,0 +1,44 @@
+.wrapper {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input {
+    display: none;
+    visibility: hidden;
+}
+
+.iconFile {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    display: block;
+    fill: var(--text-secondary-2);
+}
+
+.iconAccent {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    display: block;
+    fill: var(--error);
+}
+
+.caption {
+    flex-grow: 1;
+    min-width: 0;
+    font-size: 14px;
+    font-weight: 400;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--text-primary);
+}
+
+@media (max-width: 700px) {
+    .wrapper {
+
+    }
+}

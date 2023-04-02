@@ -1,0 +1,15 @@
+.wrapper {
+    width: 100%;
+    display: block;
+
+    &__title {
+        width: 100%;
+        font-size: 11px;
+        margin-bottom: 2px;
+        color: var(--text-secondary-2);
+    }
+}
+
+.required {
+    color: red;
+}

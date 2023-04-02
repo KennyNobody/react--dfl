@@ -1,0 +1,22 @@
+.tabs {
+    &__toolbar {
+        display: flex;
+        margin-bottom: 20px;
+    }
+    &__button {
+        flex: 1 1;
+        //flex-grow: 1;
+        outline: none;
+        cursor: pointer;
+        font-size: 12px;
+        line-height: 1.2;
+        padding: 0 10px 4px;
+        font-family: var(--font-main);
+        color: var(--text-secondary-2);
+        border-bottom: 1px solid var(--blue-bg-hover);
+    }
+    &__buttonActive {
+        color: var(--blue-resolution);
+        border-color: var(--blue-resolution);
+    }
+}
