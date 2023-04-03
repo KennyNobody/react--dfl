@@ -212,14 +212,14 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                     />
                 </div>
             </div>
-            <div className={classNames(grid['columns'], styles['section'])}>
-                <Dropdown
-                    isOpened={false}
-                    title={'Данные о грузе'}
-                >
-                    <Info data={getValues()}/>
-                </Dropdown>
-            </div>
+            {/*<div className={classNames(grid['columns'], styles['section'])}>*/}
+            {/*    <Dropdown*/}
+            {/*        isOpened={false}*/}
+            {/*        title={'Данные о грузе'}*/}
+            {/*    >*/}
+            {/*        <Info data={getValues()}/>*/}
+            {/*    </Dropdown>*/}
+            {/*</div>*/}
             {renderList()}
         </>
     )
