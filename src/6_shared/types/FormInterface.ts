@@ -9,7 +9,7 @@ interface FormInterface {
     fromCity?: PlaceItemInterface;
     toCountry?: PlaceItemInterface;
     toCity?: PlaceItemInterface;
-    date?: string;
+    date?: [Date | null, Date | null];
 
     needFullTransport?: boolean;
 

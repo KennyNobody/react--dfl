@@ -24,16 +24,29 @@ export const FormRegular = () => {
     const prevIndexRef = useRef<number>(0);
 
     const [tabIndex, setTabIndex] = useState<number>(0);
+    const [itemsList, setItemsList] = useState<number>(1);
     const [formFullSize, setFormFullSize] = useState<boolean>(false);
     const [alertVisible, setAlertVisible] = useState<boolean>(false);
     const [sectionAdded, setSectionAdded] = useState<boolean>(false);
     const [plugDisabled, setPlugDisabled] = useState<boolean>(false);
-    const [itemsList, setItemsList] = useState<number>(1);
+    const [isMultiItems, setIsMultiItems] = useState<boolean>(false);
 
     const formMethods = useForm<FormInterface>({
         mode: "onChange",
-        shouldUnregister: false
+        shouldUnregister: false,
+        defaultValues: {
+            'date': [null, null]
+        }
     });
+
+    // @ts-ignore
+    const checkboxValue = formMethods.watch('isGroupage', false);
+
+    useEffect(() => {
+        setIsMultiItems(!checkboxValue);
+    }, [checkboxValue]);
+
+
 
     useEffect(() => {
         prevIndexRef.current = tabIndex;
@@ -159,6 +172,7 @@ export const FormRegular = () => {
                     showPlug,
                     submitData,
                     addItem,
+                    isMultiItems,
                     itemsList
                 }}
             >

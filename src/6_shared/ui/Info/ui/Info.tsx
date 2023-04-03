@@ -19,8 +19,6 @@ export const Info = ({data}: InfoProps) => {
         cargoCaption
     } = data;
 
-    console.log(data);
-
     return (
         <div className={classNames(style['info'])}>
             {cargoName && cargoName.length > 0 &&

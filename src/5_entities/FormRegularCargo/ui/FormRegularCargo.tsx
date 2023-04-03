@@ -16,6 +16,10 @@ import stylesTabs from '6_shared/styles/tabs.module.scss';
 import {Textarea} from "6_shared/ui/Textarea/ui/Textarea";
 import {transportType} from "6_shared/data/select";
 import {SelectLib} from "6_shared/ui/SelectLib/ui/SelectLib";
+import {Checkbox} from "6_shared/ui/Checkbox/ui/Checkbox";
+import {FileUploader} from "6_shared/ui/FileUploader/FileUploader";
+import {Info} from "6_shared/ui/Info/ui/Info";
+import {Dropdown} from "6_shared/ui/Dropdown/ui/Dropdown";
 
 interface FormCargoProps {
     innerRef: any;
@@ -32,7 +36,7 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
         for (let i = 1; i <= context.itemsList; i++) {
             components.push(
                 <div className={styles['section']}  key={i}>
-                    <ItemCargo context={context} index={i}>
+                    <ItemCargo context={context} index={i} isActive={context.isMultiItems}>
                         <div className={classNames(grid['columns'])}>
                             <div className={classNames(grid['columns__col--6'], grid['columns__col--mob-2'])}>
                                 <InputWrapper title='Название груза' isRequired={true}>
@@ -146,6 +150,9 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                                     />
                                 </InputWrapper>
                             </div>
+                            <div className={classNames(grid['columns__col--12'], grid['columns__col--mob-2'])}>
+                                <FileUploader name={'isFile'} />
+                            </div>
                         </div>
                     </ItemCargo>
                 </div>
@@ -164,7 +171,10 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
             >
                 {getValues('fromCity') &&
                     <div
-                        className={classNames(grid['columns__col'], grid['columns__col--3'], grid['columns__col--mob--2'])}>
+                        className={classNames(grid['columns__col'],
+                            grid['columns__col--3'],
+                            grid['columns__col--mob--2'])}
+                    >
                         <Caption
                             title={'Откуда:'}
                             caption={getValues('fromCity').label}
@@ -187,6 +197,28 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                         caption={'23.12.2022 - 26.12.2022'}
                     />
                 </div>
+            </div>
+            <div className={classNames(grid['columns'], styles['section'])}>
+                <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob--2'])}>
+                    <Checkbox
+                        caption={'Необходим полный объем транспорта под перевозку'}
+                        name={'neededFullVolume'}
+                    />
+                </div>
+                <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob--2'])}>
+                    <Checkbox
+                        caption={'Сборный груз'}
+                        name={'isGroupage'}
+                    />
+                </div>
+            </div>
+            <div className={classNames(grid['columns'], styles['section'])}>
+                <Dropdown
+                    isOpened={false}
+                    title={'Данные о грузе'}
+                >
+                    <Info data={getValues()}/>
+                </Dropdown>
             </div>
             {renderList()}
         </>

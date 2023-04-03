@@ -1,5 +1,5 @@
 import styles from "./FormRegularPath.module.scss";
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import classNames from "classnames";
 import {Controller, useForm, useFormContext} from "react-hook-form";
 import grid from "6_shared/styles/columns.module.scss";
@@ -20,16 +20,23 @@ interface FormUserInfoProps {
 }
 
 export const FormRegularPath = ({innerRef, buttonText}: FormUserInfoProps) => {
-    const { control, getValues, formState: {errors} } = useFormContext();
+    const { control, watch, getValues, formState: {errors} } = useFormContext();
     let context = useContext(FormContext);
 
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
-    const onChangeDate = (dates: [Date, Date]) => {
-        const [start, end] = dates;
-        setStartDate(start);
-        setEndDate(end);
-    };
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+    // const onChangeDate = (dates: [Date, Date]) => {
+    //     const [start, end] = dates;
+    //     setStartDate(start);
+    //     setEndDate(end);
+    // };
+
+    const date = watch('date');
+
+    useEffect(() => {
+        setStartDate(date[0]);
+        setEndDate(date[1]);
+    }, [date]);
 
     const [cityFromIsDisabled, setCityFromIsDisabled] = useState<boolean>(!!!getValues('fromCity'));
     const [cityToIsDisabled, setCityToIsDisabled] = useState<boolean>(!!!getValues('toCity'));
@@ -108,7 +115,7 @@ export const FormRegularPath = ({innerRef, buttonText}: FormUserInfoProps) => {
                             name={"date"}
                             control={control}
                             rules={{ required: true }}
-                            // defaultValue={new Date()}
+                            defaultValue={[null, null]}
                             render={({ field }) => {
                                 return (
                                     <DatePicker
@@ -116,11 +123,13 @@ export const FormRegularPath = ({innerRef, buttonText}: FormUserInfoProps) => {
                                         calendarContainer={CalendarWrapper}
                                         dateFormat="dd.MM.yyyy"
                                         onChange = {(val) => {
-                                            onChangeDate(val);
+                                            setStartDate(val[0]);
+                                            setEndDate(val[1]);
                                             field.onChange(val);
                                         }}
                                         startDate={startDate}
                                         endDate={endDate}
+                                        selected={startDate}
                                         // value={field.value}
                                         placeholderText="Выберите дату или интервал"
                                         className={errors["date"] ? "datepickerField error" : "datepickerField"}
