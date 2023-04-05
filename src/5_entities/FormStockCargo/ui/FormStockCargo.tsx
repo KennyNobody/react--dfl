@@ -36,7 +36,7 @@ export const FormStockCargo = ({innerRef, buttonText}: FormCargoStockProps) => {
                             <Input
                                 isRequired={true}
                                 placeholderProp={'Укажите количество'}
-                                typeProp={'text'}
+                                typeProp={'number'}
                                 name={'skuPositionQuantity'}
                             />
                         </InputWrapper>
@@ -85,7 +85,7 @@ export const FormStockCargo = ({innerRef, buttonText}: FormCargoStockProps) => {
                                     <Input
                                         isRequired={true}
                                         placeholderProp={'Укажите объем'}
-                                        typeProp={'text'}
+                                        typeProp={'number'}
                                         caption={'М³'}
                                         name={'balancePerMonthVolume'}
                                     />
@@ -147,7 +147,7 @@ export const FormStockCargo = ({innerRef, buttonText}: FormCargoStockProps) => {
                                     <Input
                                         isRequired={true}
                                         placeholderProp={'Укажите объем'}
-                                        typeProp={'text'}
+                                        typeProp={'number'}
                                         caption={'М³'}
                                         name={'averageShipmentVolume'}
                                     />
@@ -156,7 +156,7 @@ export const FormStockCargo = ({innerRef, buttonText}: FormCargoStockProps) => {
                                     <Input
                                         isRequired={true}
                                         placeholderProp={'Укажите количество'}
-                                        typeProp={'text'}
+                                        typeProp={'number'}
                                         caption={'Паллет'}
                                         name={'averageShipmentQuantity'}
                                     />

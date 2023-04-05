@@ -11,7 +11,7 @@ interface FormInterface {
     toCity?: PlaceItemInterface;
     date?: [Date | null, Date | null];
 
-    needFullTransport?: boolean;
+    neededFullVolume?: boolean;
 
     cargoName?: string;
     cargoWeight?: string;
@@ -21,7 +21,7 @@ interface FormInterface {
     cargoVolume?: string;
     cargoPrice?: string;
     quantityPlaces?: string;
-    customsCode?: string;
+    customsvalue?: string;
     fullName?: string;
     transportType?: string;
     cargoCaption? :string;

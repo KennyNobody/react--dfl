@@ -29,7 +29,7 @@ export const FormStockMain = ({innerRef, buttonText}: FormUserInfoProps) => {
                             isRequired={true}
                             placeholderProp={'Название груза'}
                             typeProp={'text'}
-                            name={'cargoName'}
+                            name={'name'}
                         />
                     </InputWrapper>
                 </div>
@@ -40,7 +40,7 @@ export const FormStockMain = ({innerRef, buttonText}: FormUserInfoProps) => {
                             placeholderProp={'Укажите вес'}
                             typeProp={'number'}
                             caption={'Кг'}
-                            name={'cargoWeight'}
+                            name={'weight'}
                         />
                     </InputWrapper>
                 </div>
@@ -60,7 +60,7 @@ export const FormStockMain = ({innerRef, buttonText}: FormUserInfoProps) => {
                                     placeholderProp={'Общий объем'}
                                     typeProp={'number'}
                                     caption={'М³'}
-                                    name={'cargoVolume'}
+                                    name={'volume'}
                                 />
                             </TabPanel>
                             <TabPanel className={classNames(style['content'])}>
@@ -68,20 +68,20 @@ export const FormStockMain = ({innerRef, buttonText}: FormUserInfoProps) => {
                                     isRequired={true}
                                     placeholderProp={'Длина'}
                                     typeProp={'number'}
-                                    name={'cargoLength'}
+                                    name={'length'}
                                 />
                                 <Input
                                     isRequired={true}
                                     placeholderProp={'Ширина'}
                                     typeProp={'number'}
-                                    name={'cargoWidth'}
+                                    name={'width'}
                                 />
                                 <Input
                                     isRequired={true}
                                     placeholderProp={'Высота'}
                                     typeProp={'number'}
                                     caption={'М'}
-                                    name={'cargoHeight'}
+                                    name={'height'}
                                 />
                             </TabPanel>
                         </Tabs>

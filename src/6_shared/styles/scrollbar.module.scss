@@ -17,3 +17,9 @@
         background-color: var(--blue-bg-hover);    /* color of the scroll thumb */
     }
 }
+
+@media (max-width: 700px) {
+    .scrollbar {
+        scrollbar-gutter: auto;
+    }
+}

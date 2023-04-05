@@ -1,4 +1,5 @@
 import styles from "./FormRegularCargoAdditional.module.scss";
+import style from "6_shared/styles/tabs.module.scss";
 import React, {FormEvent, useContext, useState} from "react";
 import classNames from "classnames";
 import {Controller, useForm, useFormContext} from "react-hook-form";
@@ -15,6 +16,7 @@ import {Checkbox} from "6_shared/ui/Checkbox/ui/Checkbox";
 import {FileUploader} from "6_shared/ui/FileUploader/FileUploader";
 import {ButtonNext} from "6_shared/ui/ButtonNext/ui/ButtonNext";
 import {FormContext} from "3_widgets/FormRegular/context/context";
+import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 
 interface FormCargoRegularProps {
     innerRef: any;
@@ -137,8 +139,46 @@ export const FormRegularCargoAdditional = ({innerRef, buttonText}: FormCargoRegu
                     </InputWrapper>
                 </div>
                 <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob--2'])}>
-                    <InputWrapper title='Объем или размер' isRequired={false}>
-                        <TabsFieldSizes />
+                    <InputWrapper title='Объем или размер грузовых мест' isRequired={false}>
+                        <Tabs
+                            selectedTabClassName={classNames(style['tab--active'])}
+                        >
+                            <TabList className={classNames(style['header'])}>
+                                <Tab className={classNames(style['tab'])}>Размер</Tab>
+                                <Tab className={classNames(style['tab'])}>Объем</Tab>
+                            </TabList>
+
+                            <TabPanel className={classNames(style['content'])}>
+                                <Input
+                                    isRequired={false}
+                                    placeholderProp={'Общий объем'}
+                                    typeProp={'text'}
+                                    caption={'М³'}
+                                    name={'cargoVolume'}
+                                />
+                            </TabPanel>
+                            <TabPanel className={classNames(style['content'])}>
+                                <Input
+                                    isRequired={false}
+                                    placeholderProp={'Длина'}
+                                    typeProp={'text'}
+                                    name={'cargoLength'}
+                                />
+                                <Input
+                                    isRequired={false}
+                                    placeholderProp={'Ширина'}
+                                    typeProp={'text'}
+                                    name={'cargoWidth'}
+                                />
+                                <Input
+                                    isRequired={false}
+                                    placeholderProp={'Высота'}
+                                    typeProp={'text'}
+                                    caption={'М'}
+                                    name={'cargoHeight'}
+                                />
+                            </TabPanel>
+                        </Tabs>
                     </InputWrapper>
                 </div>
                 <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob--2'])}>

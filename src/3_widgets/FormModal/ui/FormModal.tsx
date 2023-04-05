@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 
-import styles from "./FormModal.module.scss";
+import styleTabs from "6_shared/styles/tabs-nav.module.scss";
 import "6_shared/styles/datepicker/datepicker.scss";
 
 import classNames from "classnames";
@@ -161,16 +161,16 @@ export const FormModal = () => {
                     isFull={formFullSize}
                 >
                     <Tabs
-                        className={styles.tabs}
-                        selectedTabClassName={styles.tabs__buttonActive}
+                        className={styleTabs.tabs}
+                        selectedTabClassName={styleTabs.tabs__buttonActive}
                         selectedIndex={tabIndex}
                         onSelect={setActiveTab}
                     >
-                        <TabList className={styles['tabs__toolbar']}>
+                        <TabList className={styleTabs['tabs__toolbar']}>
                             {tabsList.map((tab: TabItem) => (
                                 <Tab
                                     key={tab.id}
-                                    className={styles['tabs__button']}
+                                    className={styleTabs['tabs__button']}
                                 >{tab.title}</Tab>
                             ))}
                         </TabList>

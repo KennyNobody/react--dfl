@@ -31,6 +31,10 @@
     justify-content: center;
     border: 2px solid var(--text-secondary-2);
 
+    &--error {
+        border-color: var(--error);
+    }
+
     svg {
         opacity: 0;
         width: 9px;

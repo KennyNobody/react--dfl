@@ -14,7 +14,7 @@ export const Info = ({data}: InfoProps) => {
         cargoVolume,
         cargoPrice,
         quantityPlaces,
-        customsCode,
+        customsvalue,
         transportType,
         cargoCaption
     } = data;
@@ -36,8 +36,8 @@ export const Info = ({data}: InfoProps) => {
             {quantityPlaces && quantityPlaces.length > 0 &&
                 <ArticleInfo title={'Количество грузовых мест'} text={quantityPlaces} size={'small'}/>
             }
-            {customsCode && customsCode.length > 0 &&
-                <ArticleInfo title={'Таможенный код (6 симв.)'} text={customsCode} size={'small'}/>
+            {customsvalue && customsvalue.length > 0 &&
+                <ArticleInfo title={'Таможенный код (6 симв.)'} text={customsvalue} size={'small'}/>
             }
             {transportType && transportType.length > 0 &&
                 <ArticleInfo title={'Требуемый тип ТС'} text={transportType} size={'small'}/>

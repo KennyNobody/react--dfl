@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from "react";
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import {FormContext} from "3_widgets/FormStock/context/context";
-import styles from "./FormStock.module.scss";
+import styleTabs from "6_shared/styles/tabs-nav.module.scss";
 import classNames from "classnames";
 
 import {FormInterface} from "6_shared/types/FormInterface";
@@ -123,14 +123,14 @@ export const FormStock = () => {
                     <Tabs
                         onSelect={setActiveTab}
                         selectedIndex={tabIndex}
-                        className={styles['tabs']}
-                        selectedTabClassName={styles['tabs__buttonActive']}
+                        className={styleTabs['tabs']}
+                        selectedTabClassName={styleTabs['tabs__buttonActive']}
                     >
-                        <TabList className={styles['tabs__toolbar']}>
+                        <TabList className={styleTabs['tabs__toolbar']}>
                             {tabsList.map((tab: TabItem) => (
                                 <Tab
                                     key={tab.id}
-                                    className={styles['tabs__button']}
+                                    className={styleTabs['tabs__button']}
                                 >{tab.title}</Tab>
                             ))}
                         </TabList>

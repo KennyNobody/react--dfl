@@ -71,7 +71,7 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                                         <Input
                                             isRequired={true}
                                             placeholderProp={'Общий объем'}
-                                            typeProp={'text'}
+                                            typeProp={'number'}
                                             caption={'М³'}
                                             name={`items.item-${i}.volume`}
                                         />
@@ -80,19 +80,19 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                                         <Input
                                             isRequired={true}
                                             placeholderProp={'Длина'}
-                                            typeProp={'text'}
+                                            typeProp={'number'}
                                             name={`items.item-${i}.length`}
                                         />
                                         <Input
                                             isRequired={true}
                                             placeholderProp={'Ширина'}
-                                            typeProp={'text'}
+                                            typeProp={'number'}
                                             name={`items.item-${i}.width`}
                                         />
                                         <Input
                                             isRequired={true}
                                             placeholderProp={'Высота'}
-                                            typeProp={'text'}
+                                            typeProp={'number'}
                                             caption={'М'}
                                             name={`items.item-${i}.height`}
                                         />
@@ -102,9 +102,10 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                             <div className={classNames(grid['columns__col--6'], grid['columns__col--mob-2'])}>
                                 <InputWrapper title='Оценочная стоимость груза' isRequired={true}>
                                     <Input
+                                        // TODO Вставить маску
                                         isRequired={true}
                                         placeholderProp={'Укажите стоимость'}
-                                        typeProp={'number'}
+                                        typeProp={'text'}
                                         caption={'₽'}
                                         name={`items.item-${i}.price`}
                                     />
@@ -126,18 +127,18 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                                         isRequired={true}
                                         placeholderProp={'Укажите таможенный код'}
                                         typeProp={'text'}
-                                        name={`items.item-${i}.code`}
+                                        name={`items.item-${i}.value`}
                                     />
                                 </InputWrapper>
                             </div>
                             <div className={classNames(grid['columns__col--6'], grid['columns__col--mob-2'])}>
-                                <InputWrapper title='Таможенный код (6 симв.)' isRequired={true}>
+                                <InputWrapper title='Требуемый тип ТС' isRequired={true}>
                                     <SelectLib
                                         listArr={transportType}
-                                        name={`items.item-${i}.services`}
-                                        placeholder={'Выберите услуги'}
+                                        name={`items.item-${i}.transportType`}
+                                        placeholder={'Выберите тип'}
                                         isRequired={true}
-                                        isMulti={true}
+                                        isMulti={false}
                                     />
                                 </InputWrapper>
                             </div>
@@ -212,14 +213,6 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                     />
                 </div>
             </div>
-            {/*<div className={classNames(grid['columns'], styles['section'])}>*/}
-            {/*    <Dropdown*/}
-            {/*        isOpened={false}*/}
-            {/*        title={'Данные о грузе'}*/}
-            {/*    >*/}
-            {/*        <Info data={getValues()}/>*/}
-            {/*    </Dropdown>*/}
-            {/*</div>*/}
             {renderList()}
         </>
     )

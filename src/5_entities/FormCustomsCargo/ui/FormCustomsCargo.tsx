@@ -2,19 +2,15 @@ import styles from "./FormCustomsCargo.module.scss";
 import React, {FormEvent, useContext, useState} from "react";
 import classNames from "classnames";
 import {Controller, useForm, useFormContext} from "react-hook-form";
-import {FormInterface} from "6_shared/types/FormInterface";
 import grid from "6_shared/styles/columns.module.scss";
 import {InputWrapper} from "6_shared/ui/InputWrapper/ui/InputWrapper";
 import {Input} from "6_shared/ui/Input/ui/Input";
-import {SelectNative} from "6_shared/ui/SelectNative/ui/SelectNative";
 import {cities, countries, transportType} from "6_shared/data/select";
 import {Textarea} from "6_shared/ui/Textarea/ui/Textarea";
-import {TabsFieldSizes} from "5_entities/TabsFieldSizes/ui/TabsFieldSizes";
 import {Form} from "6_shared/ui/Form/Form";
 import {SectionAdd} from "5_entities/SectionAdd/SectionAdd";
 import {Caption} from "6_shared/ui/Caption/ui/Caption";
 import {SelectLib} from "6_shared/ui/SelectLib/ui/SelectLib";
-import {Checkbox} from "6_shared/ui/Checkbox/ui/Checkbox";
 import {FileUploader} from "6_shared/ui/FileUploader/FileUploader";
 import {ButtonNext} from "6_shared/ui/ButtonNext/ui/ButtonNext";
 import {FormContext} from "3_widgets/FormCustoms/context/context";
@@ -27,7 +23,7 @@ interface FormCargoProps {
 export const FormCustomsCargo = ({innerRef, buttonText}: FormCargoProps) => {
     let context = useContext(FormContext);
     const {getValues, watch} = useFormContext();
-    const textareaRequired = watch('codesList');
+    const textareaRequired = watch('valuesList');
 
     const mainForm = (
         <div>
@@ -80,7 +76,7 @@ export const FormCustomsCargo = ({innerRef, buttonText}: FormCargoProps) => {
                             isRequired={true}
                             placeholderProp={'Укажите коды'}
                             typeProp={'text'}
-                            name={'codesList'}
+                            name={'valuesList'}
                         />
                     </InputWrapper>
                 </div>
@@ -100,7 +96,7 @@ export const FormCustomsCargo = ({innerRef, buttonText}: FormCargoProps) => {
                         <Input
                             isRequired={true}
                             placeholderProp={'Укажите количество'}
-                            typeProp={'text'}
+                            typeProp={'number'}
                             name={'quantityPlaces'}
                         />
                     </InputWrapper>
@@ -110,7 +106,7 @@ export const FormCustomsCargo = ({innerRef, buttonText}: FormCargoProps) => {
                         <Input
                             isRequired={true}
                             placeholderProp={'Укажите вес'}
-                            typeProp={'text'}
+                            typeProp={'number'}
                             caption={'Кг'}
                             name={'netWeight'}
                         />
@@ -121,7 +117,7 @@ export const FormCustomsCargo = ({innerRef, buttonText}: FormCargoProps) => {
                         <Input
                             isRequired={true}
                             placeholderProp={'Укажите вес'}
-                            typeProp={'text'}
+                            typeProp={'number'}
                             caption={'Кг'}
                             name={'grossWeight'}
                         />

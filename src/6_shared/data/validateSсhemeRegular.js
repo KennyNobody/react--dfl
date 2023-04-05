@@ -15,7 +15,7 @@ const validateScheme = {
         'cargoVolume',
         'cargoPrice',
         'quantityPlaces',
-        'customsCode',
+        'customsvalue',
         'fullName',
         'transportType',
         'cargoCaption',
@@ -25,19 +25,22 @@ const validateScheme = {
         'cargoDescription'
     ],
     'userRegular': [
+        'fullName',
         'organization',
         'phoneNumber',
         'email',
         'website',
-        'INN'
+        'INN',
+        'privacyAgreement'
     ],
     // Хранение
     'stockMain': [
-        'cargoName',
-        'cargoWeight',
-        'cargoLength',
-        'cargoWidth',
-        'cargoHeight',
+        'name',
+        'weight',
+        'volume',
+        'length',
+        'width',
+        'height',
     ],
     // Хранение "О грузе"
     'cargoStock': [
@@ -63,7 +66,7 @@ const validateScheme = {
     'customCargo': [
         'customsType',
         'cargoName',
-        'codesList',
+        'valuesList',
         'cargoFromCountry',
         'quantityPlaces',
         'netWeight',
@@ -111,7 +114,7 @@ const validateScheme = {
         'height',
         'price',
         'places',
-        'code',
+        'value',
         'caption'
     ]
 }

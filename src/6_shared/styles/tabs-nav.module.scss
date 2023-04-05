@@ -1,0 +1,36 @@
+.tabs {
+    &__toolbar {
+        display: flex;
+        margin-bottom: 20px;
+    }
+    &__button {
+        flex: 1 1;
+        outline: none;
+        cursor: pointer;
+        font-size: 12px;
+        line-height: 1.2;
+        padding: 0 10px 4px;
+        font-family: var(--font-main);
+        color: var(--text-secondary-2);
+        border-bottom: 1px solid var(--blue-bg-hover);
+    }
+    &__buttonActive {
+        color: var(--blue-resolution);
+        border-color: var(--blue-resolution);
+    }
+}
+
+@media (max-width: 700px) {
+    .tabs {
+        &__toolbar {
+            display: flex;
+            margin-bottom: 30px;
+        }
+        &__button {
+            flex: 1 0;
+            font-size: 14px;
+            text-align: center;
+            padding: 0 3px 4px;
+        }
+    }
+}

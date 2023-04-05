@@ -96,7 +96,11 @@ export const FormCustomsUser = ({innerRef, buttonText}: FormUserInfoProps) => {
                     </InputWrapper>
                 </div>
                 <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
-                    <Agreement link={'/#/'}/>
+                    <Agreement
+                        link={'/#/'}
+                        name={'privacyAgreement'}
+                        isRequired={true}
+                    />
                 </div>
             </div>
             <ButtonNext
