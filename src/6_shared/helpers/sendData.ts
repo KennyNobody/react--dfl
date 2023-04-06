@@ -1,6 +1,6 @@
 import axios, {AxiosResponse} from "axios";
 
-function sendData(data: any, type: string) {
+function sendData(data: any) {
     axios.post('/api/v1/service', data, {
         headers: {
             'Content-Type': 'application/json'

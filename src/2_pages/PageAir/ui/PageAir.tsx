@@ -10,7 +10,7 @@ export const PageAir = () => {
     return (
         <Page type={'regular'}>
             <Title text={'Мы предлагаем регулярные грузовые авиаперевозки'} />
-            <FormRegular/>
+            <FormRegular serviceType={'авиаперевозки'}/>
             <Picture preview={'air'} />
         </Page>
     );

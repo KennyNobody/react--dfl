@@ -18,9 +18,14 @@ import {FormCustomsPath} from "5_entities/FormCustomsPath/FormCustomsPath";
 
 import ru from 'date-fns/locale/ru';
 import {FormCustomsCargo} from "5_entities/FormCustomsCargo/FormCustomsCargo";
+import {sendData} from "6_shared/helpers/sendData";
 registerLocale('ru', ru);
 
-export const FormCustoms = () => {
+interface FormProps {
+    serviceType: string;
+}
+
+export const FormCustoms = ({serviceType}: FormProps) => {
     const tabPathRef = useRef(null);
     const tabCargoRef = useRef(null);
     const tabCargoRefAdditional = useRef(null);
@@ -76,7 +81,11 @@ export const FormCustoms = () => {
 
     const submitData = () => {
         formMethods.trigger().then(() => {
-            if (isValidSection()) alert('Отправляем форму');
+            if (isValidSection()) {
+                const data = formMethods.getValues();
+                data['serviceName'] = serviceType;
+                sendData(data);
+            }
             else setAlertVisible(true);
         });
     }

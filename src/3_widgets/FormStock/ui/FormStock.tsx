@@ -15,8 +15,13 @@ import {validateSection} from "6_shared/helpers/validateSection";
 import {FormStockUser} from "5_entities/FormStockUser/FormStockUser";
 import {FormStockMain} from "5_entities/FormStockMain/FormStockMain";
 import {FormStockCargo} from "5_entities/FormStockCargo/FormStockCargo";
+import {sendData} from "6_shared/helpers/sendData";
 
-export const FormStock = () => {
+interface FormProps {
+    serviceType: string;
+}
+
+export const FormStock = ({serviceType}: FormProps) => {
     const tabMainRef = useRef(null);
     const tabCargoRef = useRef(null);
     const tabUserRef = useRef(null);
@@ -71,7 +76,11 @@ export const FormStock = () => {
 
     const submitData = () => {
         formMethods.trigger().then(() => {
-            if (isValidSection()) alert('Отправляем форму');
+            if (isValidSection()) {
+                const data = formMethods.getValues();
+                data['serviceName'] = serviceType;
+                sendData(data);
+            }
             else setAlertVisible(true);
         });
     }

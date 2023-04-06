@@ -15,8 +15,13 @@ import {FormUser} from "5_entities/FormUser/FormUser";
 import {FormRegularPath} from "5_entities/FormRegularPath/FormRegularPath";
 import {FormRegularCargoAdditional} from "5_entities/FormRegularCargoAdditional/FormRegularCargoAdditional";
 import {FormRegularCargo} from "5_entities/FormRegularCargo/FormRegularCargo";
+import {sendData} from "6_shared/helpers/sendData";
 
-export const FormRegular = () => {
+interface FormProps {
+    serviceType: string;
+}
+
+export const FormRegular = ({serviceType}: FormProps) => {
     const tabPathRef = useRef(null);
     const tabCargoRef = useRef(null);
     const tabCargoAdditionalRef = useRef(null);
@@ -45,8 +50,6 @@ export const FormRegular = () => {
     useEffect(() => {
         setIsMultiItems(!checkboxValue);
     }, [checkboxValue]);
-
-
 
     useEffect(() => {
         prevIndexRef.current = tabIndex;
@@ -90,7 +93,11 @@ export const FormRegular = () => {
 
     const submitData = () => {
         formMethods.trigger().then(() => {
-            if (isValidSection()) alert('Отправляем форму');
+            if (isValidSection()) {
+                const data = formMethods.getValues();
+                data['serviceName'] = serviceType;
+                sendData(data);
+            }
             else setAlertVisible(true);
         });
     }

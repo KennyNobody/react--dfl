@@ -18,10 +18,15 @@ import ru from 'date-fns/locale/ru';
 import { FormContext } from "../context/context";
 import {FormMiltimodalCargo} from "5_entities/FormMiltimodalCargo/FormMiltimodalCargo";
 import {FormRegularCargoAdditional} from "5_entities/FormRegularCargoAdditional/FormRegularCargoAdditional";
+import {sendData} from "6_shared/helpers/sendData";
 
 registerLocale('ru', ru);
 
-export const FormModal = () => {
+interface FormProps {
+    serviceType: string;
+}
+
+export const FormModal = ({serviceType}: FormProps) => {
     const tabPathRef = useRef(null);
     const tabCargoRef = useRef(null);
     const tabUserRef = useRef(null);
@@ -75,7 +80,11 @@ export const FormModal = () => {
 
     const submitData = () => {
         formMethods.trigger().then(() => {
-            if (isValidSection()) alert('Отправляем форму');
+            if (isValidSection()) {
+                const data = formMethods.getValues();
+                data['serviceName'] = serviceType;
+                sendData(data);
+            }
             else setAlertVisible(true);
         });
     }

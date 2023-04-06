@@ -9,7 +9,7 @@ export const PageSea = () => {
     return (
         <Page type={'regular'}>
             <Title text={'Мы предлагаем регулярные грузовые морские перевозки'} />
-            <FormRegular/>
+            <FormRegular serviceType={'морские перевозки'}/>
             <Picture preview={'sea'} />
         </Page>
     );

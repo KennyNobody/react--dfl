@@ -7,8 +7,8 @@ export const PageGroupage = () => {
     return (
         <Page type={'regular'}>
             <Title text='Возможна доставка сборных грузов «от двери до двери»'/>
-            <FormRegular/>
-            <Picture preview={'air'} />
+            <FormRegular serviceType={'сборный груз'}/>
+            <Picture preview={'ground'} />
         </Page>
     );
 };

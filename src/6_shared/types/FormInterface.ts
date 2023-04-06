@@ -5,6 +5,7 @@ interface PlaceItemInterface {
 }
 
 interface FormInterface {
+    serviceName?: string;
     fromCountry?: PlaceItemInterface;
     fromCity?: PlaceItemInterface;
     toCountry?: PlaceItemInterface;

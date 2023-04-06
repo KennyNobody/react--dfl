@@ -21,7 +21,7 @@ export function buildLoaders({isDev}: BuildOptions): webpack.RuleSetRule[] {
                 options: {
                     modules: {
                         auto: (resPath: string) => Boolean(resPath.includes('.module.')),
-                        localIdentName: isDev ? '[path][name]___[local]-[hash:base64:6]' : '[path][name]'
+                        localIdentName: isDev ? '[path][name]___[local]-[hash:base64:6]' : '[hash:base64:5]'
                     }
                 }
             },

@@ -16,7 +16,7 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
             filename: "build.js",
             path: paths.build,
             clean: true,
-            assetModuleFilename: '[name].[ext]'
+            assetModuleFilename: '[name][ext]'
         },
         plugins: buildPlugins(options),
         module: {
