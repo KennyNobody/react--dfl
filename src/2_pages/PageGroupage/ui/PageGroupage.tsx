@@ -7,7 +7,10 @@ export const PageGroupage = () => {
     return (
         <Page type={'regular'}>
             <Title text='Возможна доставка сборных грузов «от двери до двери»'/>
-            <FormRegular serviceType={'сборный груз'}/>
+            <FormRegular
+                formType={'groupage'}
+                serviceTitle={'сборный груз'}
+            />
             <Picture preview={'ground'} />
         </Page>
     );

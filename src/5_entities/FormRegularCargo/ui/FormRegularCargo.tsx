@@ -18,8 +18,6 @@ import {transportType} from "6_shared/data/select";
 import {SelectLib} from "6_shared/ui/SelectLib/ui/SelectLib";
 import {Checkbox} from "6_shared/ui/Checkbox/ui/Checkbox";
 import {FileUploader} from "6_shared/ui/FileUploader/FileUploader";
-import {Info} from "6_shared/ui/Info/ui/Info";
-import {Dropdown} from "6_shared/ui/Dropdown/ui/Dropdown";
 
 interface FormCargoProps {
     innerRef: any;
@@ -138,7 +136,7 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                                         name={`items.item-${i}.transportType`}
                                         placeholder={'Выберите тип'}
                                         isRequired={true}
-                                        isMulti={false}
+                                        isMulti={context.formType === 'modal'}
                                     />
                                 </InputWrapper>
                             </div>
@@ -152,7 +150,7 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                                 </InputWrapper>
                             </div>
                             <div className={classNames(grid['columns__col--12'], grid['columns__col--mob-2'])}>
-                                <FileUploader name={'isFile'} />
+                                <FileUploader name={`isFile-${i}`} />
                             </div>
                         </div>
                     </ItemCargo>
@@ -199,20 +197,22 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                     />
                 </div>
             </div>
-            <div className={classNames(grid['columns'], styles['section'])}>
-                <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob--2'])}>
-                    <Checkbox
-                        caption={'Необходим полный объем транспорта под перевозку'}
-                        name={'neededFullVolume'}
-                    />
+            {context.formType !== 'groupage' &&
+                <div className={classNames(grid['columns'], styles['section'])}>
+                    <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob--2'])}>
+                        <Checkbox
+                            caption={'Необходим полный объем транспорта под перевозку'}
+                            name={'neededFullVolume'}
+                        />
+                    </div>
+                    <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob--2'])}>
+                        <Checkbox
+                            caption={'Сборный груз'}
+                            name={'isGroupage'}
+                        />
+                    </div>
                 </div>
-                <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob--2'])}>
-                    <Checkbox
-                        caption={'Сборный груз'}
-                        name={'isGroupage'}
-                    />
-                </div>
-            </div>
+            }
             {renderList()}
         </>
     )

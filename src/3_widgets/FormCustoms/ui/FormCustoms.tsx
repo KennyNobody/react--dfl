@@ -19,13 +19,17 @@ import {FormCustomsPath} from "5_entities/FormCustomsPath/FormCustomsPath";
 import ru from 'date-fns/locale/ru';
 import {FormCustomsCargo} from "5_entities/FormCustomsCargo/FormCustomsCargo";
 import {sendData} from "6_shared/helpers/sendData";
+import {getMapsData} from "6_shared/helpers/getMapsData";
+import {PlaceInterface} from "6_shared/types/PlaceInterface";
+import {revertData} from "6_shared/helpers/revertData";
+
 registerLocale('ru', ru);
 
 interface FormProps {
-    serviceType: string;
+    serviceTitle: string;
 }
 
-export const FormCustoms = ({serviceType}: FormProps) => {
+export const FormCustoms = ({serviceTitle}: FormProps) => {
     const tabPathRef = useRef(null);
     const tabCargoRef = useRef(null);
     const tabCargoRefAdditional = useRef(null);
@@ -37,6 +41,8 @@ export const FormCustoms = ({serviceType}: FormProps) => {
     const [alertVisible, setAlertVisible] = useState<boolean>(false);
     const [sectionAdded, setSectionAdded] = useState<boolean>(false);
     const [plugDisabled, setPlugDisabled] = useState<boolean>(false);
+
+    const [placesList, setPlacesList] = useState<[]>([]);
 
     const formMethods = useForm<FormInterface>({
         mode: "onChange",
@@ -51,6 +57,19 @@ export const FormCustoms = ({serviceType}: FormProps) => {
 
         setAlertVisible(false);
     }, [tabIndex]);
+
+    const updatePlacesList = (val: string, type: 'from' | 'to') => {
+        const data = formMethods.getValues(type === 'from' ? 'fromCountry' : 'toCountry');
+        if (data && val.length > 2) {
+            getMapsData(data.value, val)
+                .then((response: PlaceInterface[]) => {
+                    // @ts-ignore
+                    setPlacesList(response);
+                })
+        } else {
+            setPlacesList([]);
+        }
+    }
 
     const closeModal = (): void => setAlertVisible(false);
 
@@ -83,7 +102,7 @@ export const FormCustoms = ({serviceType}: FormProps) => {
         formMethods.trigger().then(() => {
             if (isValidSection()) {
                 const data = formMethods.getValues();
-                data['serviceName'] = serviceType;
+                data['serviceName'] = serviceTitle;
                 sendData(data);
             }
             else setAlertVisible(true);
@@ -114,6 +133,10 @@ export const FormCustoms = ({serviceType}: FormProps) => {
                 setAlertVisible(true);
             }
         });
+    }
+
+    const revertPlaces = () => {
+        revertData(formMethods);
     }
 
     const [tabsList, setTabsList] = useState<TabItem[]>(
@@ -164,7 +187,9 @@ export const FormCustoms = ({serviceType}: FormProps) => {
                 plugMode: plugDisabled,
                 nextSection,
                 showPlug,
-                submitData
+                submitData,
+                updatePlacesList,
+                revertPlaces,
             }}>
                 <Wrapper
                     size={'customs'}

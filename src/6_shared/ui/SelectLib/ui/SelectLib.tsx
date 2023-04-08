@@ -17,9 +17,10 @@ interface SelectProps {
     isDisabled?: boolean;
     onChange?: Function;
     isMulti: boolean;
+    inputHandleMethod?: any;
 }
 
-export const SelectLib = ({listArr, name, placeholder, isRequired, isDisabled, onChange, isMulti}: SelectProps) => {
+export const SelectLib = ({listArr, name, placeholder, isRequired, isDisabled, onChange, isMulti, inputHandleMethod}: SelectProps) => {
     const { control, formState: {errors} } = useFormContext<any>();
 
     let val = false;
@@ -29,7 +30,6 @@ export const SelectLib = ({listArr, name, placeholder, isRequired, isDisabled, o
     } catch {
         val = false;
     }
-
 
     return (
         <label className={classNames(styles['label'])}>
@@ -49,6 +49,8 @@ export const SelectLib = ({listArr, name, placeholder, isRequired, isDisabled, o
                             field.onChange(selectedOption);
                             if (onChange) onChange();
                         }}
+                        noOptionsMessage={() => "Нет данных"}
+                        onInputChange={inputHandleMethod}
                         isDisabled={isDisabled}
                         isMulti={isMulti}
                     />

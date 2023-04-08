@@ -1,4 +1,4 @@
-import React, {Component, ReactNode} from "react";
+import React from "react";
 import classNames from "classnames";
 import styles from "./ButtonAside.module.scss";
 import Icon1 from "6_shared/assets/icons/icon-aside-1.svg"
@@ -11,7 +11,6 @@ import Icon7 from "6_shared/assets/icons/icon-aside-7.svg"
 import Icon8 from "6_shared/assets/icons/icon-aside-8.svg"
 
 interface ButtonAsideProps {
-    className?: string;
     caption: string;
     index: number;
     isActive: boolean;
@@ -33,7 +32,7 @@ const icons: Icons = {
     'icon7': Icon8,
 };
 
-export const ButtonAside = ({className, caption, index, isActive, setTab}: ButtonAsideProps) => {
+export const ButtonAside = ({caption, index, isActive, setTab}: ButtonAsideProps) => {
     const Icon = icons['icon' + index];
 
     return (

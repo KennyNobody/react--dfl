@@ -7,7 +7,10 @@ export const PageTrucking = () => {
     return (
         <Page type={'regular'}>
             <Title text={'Мы предлагаем регулярные грузовые автоперевозки'}/>
-            <FormRegular serviceType={'автомобильные перевозки'}/>
+            <FormRegular
+                formType={'regular'}
+                serviceTitle={'автомобильные перевозки'}
+            />
             <Picture preview={'ground'}/>
         </Page>
     );

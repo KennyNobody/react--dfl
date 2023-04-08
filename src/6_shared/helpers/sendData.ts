@@ -1,9 +1,22 @@
 import axios, {AxiosResponse} from "axios";
 
 function sendData(data: any) {
-    axios.post('/api/v1/service', data, {
+
+    const formData = new FormData();
+    formData.append('data', JSON.stringify(data));
+
+    const keys = Object.keys(data);
+
+    keys.forEach(key => {
+        if (key.includes("isFile")) {
+            console.log(data[key]);
+            formData.append(key, data[key]);
+        }
+    });
+
+    axios.post('/api/v1/service/', formData, {
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'multipart/form-data'
         }
     })
         .then((response: AxiosResponse) => {

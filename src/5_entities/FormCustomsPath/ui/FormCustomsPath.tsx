@@ -12,6 +12,7 @@ import {InputWrapper} from "6_shared/ui/InputWrapper/ui/InputWrapper";
 import {SelectLib} from "6_shared/ui/SelectLib/SelectLib";
 import {ButtonNext} from "6_shared/ui/ButtonNext/ui/ButtonNext";
 import {FormContext} from "3_widgets/FormCustoms/context/context";
+import {ButtonRevert} from "6_shared/ui/ButtonRevert/ui/ButtonRevert";
 
 interface FormUserInfoProps {
     innerRef: any;
@@ -53,9 +54,11 @@ export const FormCustomsPath = ({innerRef, buttonText}: FormUserInfoProps) => {
                                     isRequired={true}
                                     isDisabled={cityFromIsDisabled}
                                     isMulti={false}
+                                    inputHandleMethod={(val: string) => context.updatePlacesList(val, 'from')}
                                 />
                             </InputWrapper>
                         </div>
+                        <ButtonRevert type={'bottom'} onClickEvent={context.revertPlaces}/>
                     </div>
                 </div>
                 <div className={classNames(grid['columns__col'], grid['columns__col--12'])}>
@@ -81,6 +84,7 @@ export const FormCustomsPath = ({innerRef, buttonText}: FormUserInfoProps) => {
                                     isRequired={true}
                                     isDisabled={cityToIsDisabled}
                                     isMulti={false}
+                                    inputHandleMethod={(val: string) => context.updatePlacesList(val, 'to')}
                                 />
                             </InputWrapper>
                         </div>

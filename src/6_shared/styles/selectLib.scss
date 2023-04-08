@@ -30,8 +30,8 @@
 
     &__value-container {
         font-size: 12px;
-        flex-wrap: nowrap;
         color: var(--text-primary);
+        flex-wrap: nowrap !important;
     }
 
     &__indicators {

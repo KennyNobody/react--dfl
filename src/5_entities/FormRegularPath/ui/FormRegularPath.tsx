@@ -44,10 +44,6 @@ export const FormRegularPath = ({innerRef, buttonText}: FormUserInfoProps) => {
     const enableCityFrom = () => setCityFromIsDisabled(false);
     const enableCityTo = () => setCityToIsDisabled(false);
 
-    const revertValues = () => {
-        alert('Это функционал заработает, когда будут реальные данные об адресах');
-    }
-
     return (
         <Form>
             <div className={classNames(grid['columns'])} data-section-name={'pathRegular'} ref={innerRef}>
@@ -68,16 +64,17 @@ export const FormRegularPath = ({innerRef, buttonText}: FormUserInfoProps) => {
                         <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob--2'])}>
                             <InputWrapper>
                                 <SelectLib
-                                    listArr={cities}
+                                    listArr={context.placesList}
                                     name={'fromCity'}
                                     placeholder={'Укажите город'}
                                     isRequired={true}
                                     isDisabled={cityFromIsDisabled}
                                     isMulti={false}
+                                    inputHandleMethod={(val: string) => context.updatePlacesList(val, 'from')}
                                 />
                             </InputWrapper>
                         </div>
-                        <ButtonRevert type={'bottom'} onClickEvent={revertValues}/>
+                        <ButtonRevert type={'bottom'} onClickEvent={context.revertPlaces}/>
                     </div>
                 </div>
                 <div className={classNames(grid['columns__col'], grid['columns__col--12'])}>
@@ -97,12 +94,13 @@ export const FormRegularPath = ({innerRef, buttonText}: FormUserInfoProps) => {
                         <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob--2'])}>
                             <InputWrapper>
                                 <SelectLib
-                                    listArr={cities}
+                                    listArr={context.placesList}
                                     name={'toCity'}
                                     placeholder={'Укажите город'}
                                     isRequired={true}
                                     isDisabled={cityToIsDisabled}
                                     isMulti={false}
+                                    inputHandleMethod={(val: string) => context.updatePlacesList(val, 'to')}
                                 />
                             </InputWrapper>
                         </div>

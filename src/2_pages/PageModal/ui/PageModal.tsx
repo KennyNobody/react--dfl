@@ -9,7 +9,10 @@ export const PageModal = () => {
     return (
         <Page type={'regular'}>
             <Title text={'Мы предлагаем регулярные мультимодальные перевозки'} />
-            <FormRegular serviceType={'мультимодальные перевозки'}/>
+            <FormRegular
+                formType={'modal'}
+                serviceTitle={'мультимодальные перевозки'}
+            />
             <Picture preview={'ground'} />
         </Page>
     );

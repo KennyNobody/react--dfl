@@ -84,7 +84,7 @@ const transportType = [
 
 const countries = [
     {id: 1, value: 'BY', label: 'Беларусь'},
-    {id: 2, value: 'RUS', label: 'Россия'},
+    {id: 2, value: 'RU', label: 'Россия'},
     {id: 3, label: 'Afghanistan', value: 'AF'},
     {id: 4, label: 'Åland Islands', value: 'AX'},
     {id: 5, label: 'Albania', value: 'AL'},

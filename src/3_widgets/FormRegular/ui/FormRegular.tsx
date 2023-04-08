@@ -2,7 +2,6 @@ import {useEffect, useRef, useState} from "react";
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import {FormContext} from "3_widgets/FormRegular/context/context";
 import styleTabs from "6_shared/styles/tabs-nav.module.scss";
-import classNames from "classnames";
 
 import {FormInterface} from "6_shared/types/FormInterface";
 import {TabItem} from "6_shared/types/FormTabsInerface";
@@ -16,12 +15,18 @@ import {FormRegularPath} from "5_entities/FormRegularPath/FormRegularPath";
 import {FormRegularCargoAdditional} from "5_entities/FormRegularCargoAdditional/FormRegularCargoAdditional";
 import {FormRegularCargo} from "5_entities/FormRegularCargo/FormRegularCargo";
 import {sendData} from "6_shared/helpers/sendData";
+import {getMapsData} from "6_shared/helpers/getMapsData";
+import {PlaceInterface} from "6_shared/types/PlaceInterface";
+import {revertData} from "6_shared/helpers/revertData";
+
+type FormType = 'regular' | 'modal' | 'groupage';
 
 interface FormProps {
-    serviceType: string;
+    serviceTitle: string;
+    formType: FormType;
 }
 
-export const FormRegular = ({serviceType}: FormProps) => {
+export const FormRegular = ({serviceTitle, formType}: FormProps) => {
     const tabPathRef = useRef(null);
     const tabCargoRef = useRef(null);
     const tabCargoAdditionalRef = useRef(null);
@@ -34,7 +39,9 @@ export const FormRegular = ({serviceType}: FormProps) => {
     const [alertVisible, setAlertVisible] = useState<boolean>(false);
     const [sectionAdded, setSectionAdded] = useState<boolean>(false);
     const [plugDisabled, setPlugDisabled] = useState<boolean>(false);
-    const [isMultiItems, setIsMultiItems] = useState<boolean>(false);
+    const [isMultiItems, setIsMultiItems] = useState<boolean>(formType === 'groupage');
+
+    const [placesList, setPlacesList] = useState<[]>([]);
 
     const formMethods = useForm<FormInterface>({
         mode: "onChange",
@@ -44,12 +51,15 @@ export const FormRegular = ({serviceType}: FormProps) => {
         }
     });
 
-    // @ts-ignore
-    const checkboxValue = formMethods.watch('isGroupage', false);
+    if (formType !== 'groupage') {
+        // @ts-ignore
+        const checkboxValue = formMethods.watch('isGroupage', false);
 
-    useEffect(() => {
-        setIsMultiItems(!checkboxValue);
-    }, [checkboxValue]);
+        useEffect(() => {
+            setIsMultiItems(!checkboxValue);
+        }, [checkboxValue]);
+    }
+
 
     useEffect(() => {
         prevIndexRef.current = tabIndex;
@@ -59,6 +69,19 @@ export const FormRegular = ({serviceType}: FormProps) => {
 
         setAlertVisible(false);
     }, [tabIndex]);
+
+    const updatePlacesList = (val: string, type: 'from' | 'to') => {
+        const data = formMethods.getValues(type === 'from' ? 'fromCountry' : 'toCountry');
+        if (data && val.length > 2) {
+            getMapsData(data.value, val)
+                .then((response: PlaceInterface[]) => {
+                    // @ts-ignore
+                    setPlacesList(response);
+                })
+        } else {
+            setPlacesList([]);
+        }
+    }
 
     const closeModal = (): void => setAlertVisible(false);
 
@@ -95,7 +118,7 @@ export const FormRegular = ({serviceType}: FormProps) => {
         formMethods.trigger().then(() => {
             if (isValidSection()) {
                 const data = formMethods.getValues();
-                data['serviceName'] = serviceType;
+                data['serviceName'] = serviceTitle;
                 sendData(data);
             }
             else setAlertVisible(true);
@@ -126,6 +149,10 @@ export const FormRegular = ({serviceType}: FormProps) => {
                 setAlertVisible(true);
             }
         });
+    }
+
+    const revertPlaces = () => {
+        revertData(formMethods);
     }
 
     const [tabsList, setTabsList] = useState<TabItem[]>(
@@ -174,13 +201,17 @@ export const FormRegular = ({serviceType}: FormProps) => {
         <FormProvider {...formMethods}>
             <FormContext.Provider
                 value={{
+                    formType,
                     plugMode: plugDisabled,
                     nextSection,
                     showPlug,
                     submitData,
                     addItem,
+                    updatePlacesList,
+                    revertPlaces,
                     isMultiItems,
-                    itemsList
+                    itemsList,
+                    placesList
                 }}
             >
                 <Wrapper

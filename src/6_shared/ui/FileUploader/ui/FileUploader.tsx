@@ -14,11 +14,14 @@ interface FormData {
 }
 
 export const FileUploader = ({name}: FileUploaderProps) => {
-    const { register, formState: {errors} } = useFormContext();
+    const { register, formState: {errors}, setValue } = useFormContext();
 
     const [filename, setFilename] = useState<string>('Прикрепить спецификацию');
 
     const changeInputField = (el: HTMLInputElement) => setFilename(el.files[0].name);
+    const setFile = (file: File) => {
+        setValue(name, file);
+    }
 
     return (
         <label className={classNames(styles['wrapper'])}>
@@ -29,6 +32,7 @@ export const FileUploader = ({name}: FileUploaderProps) => {
                 {...register(name, { required: false })}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     changeInputField(e.target);
+                    setFile(e.target.files[0])
                 }}/>
             <IconFile className={classNames(styles['iconFile'])} />
             <p className={classNames(styles['caption'])}>

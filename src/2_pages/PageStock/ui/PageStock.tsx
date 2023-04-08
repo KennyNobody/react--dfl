@@ -8,7 +8,7 @@ export const PageStock = () => {
     return (
         <Page type={'stock'}>
             <Title text={'Хранение и обработка грузов с учетом номенклатуры'} />
-            <FormStock serviceType={'складское хранение'}/>
+            <FormStock serviceTitle={'складское хранение'}/>
             <Picture preview={'stock'} />
         </Page>
     );

@@ -9,7 +9,10 @@ export const PageInsurance = () => {
     return (
         <Page type={'regular'}>
             <Title text={'Подберем индивидуальные варианты страхования'} />
-            <FormRegular serviceType={'страхование'}/>
+            <FormRegular
+                formType={'regular'}
+                serviceTitle={'страхование'}
+            />
             <Picture preview={'ground'} />
         </Page>
     );

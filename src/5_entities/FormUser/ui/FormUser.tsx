@@ -78,7 +78,7 @@ export const FormUser = ({innerRef, buttonText}: FormUserInfoProps) => {
                 <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob-2'])}>
                     <InputWrapper title='Сайт'>
                         <Input
-                            isRequired={true}
+                            isRequired={false}
                             placeholderProp={'Укажите сайт'}
                             typeProp={'text'}
                             name={'website'}

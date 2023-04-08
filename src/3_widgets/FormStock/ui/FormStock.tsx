@@ -18,10 +18,10 @@ import {FormStockCargo} from "5_entities/FormStockCargo/FormStockCargo";
 import {sendData} from "6_shared/helpers/sendData";
 
 interface FormProps {
-    serviceType: string;
+    serviceTitle: string;
 }
 
-export const FormStock = ({serviceType}: FormProps) => {
+export const FormStock = ({serviceTitle}: FormProps) => {
     const tabMainRef = useRef(null);
     const tabCargoRef = useRef(null);
     const tabUserRef = useRef(null);
@@ -78,7 +78,7 @@ export const FormStock = ({serviceType}: FormProps) => {
         formMethods.trigger().then(() => {
             if (isValidSection()) {
                 const data = formMethods.getValues();
-                data['serviceName'] = serviceType;
+                data['serviceName'] = serviceTitle;
                 sendData(data);
             }
             else setAlertVisible(true);
