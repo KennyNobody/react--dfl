@@ -18,3 +18,22 @@
         padding-bottom: 200px;
     }
 }
+
+
+@media (max-width: 700px) {
+    .page {
+        height: auto;
+
+        &--regular {
+            padding-bottom: 0;
+        }
+
+        &--stock {
+            padding-bottom: 0;
+        }
+
+        &--customs {
+            padding-bottom: 0;
+        }
+    }
+}

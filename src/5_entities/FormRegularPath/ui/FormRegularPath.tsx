@@ -13,6 +13,7 @@ import {SelectLib} from "6_shared/ui/SelectLib/SelectLib";
 import {Caption} from "6_shared/ui/Caption/Caption";
 import {ButtonNext} from "6_shared/ui/ButtonNext/ui/ButtonNext";
 import {FormContext} from "3_widgets/FormRegular/context/context";
+import {validateDateRange} from "6_shared/helpers/validateDateRange";
 
 interface FormUserInfoProps {
     innerRef: any;
@@ -23,14 +24,8 @@ export const FormRegularPath = ({innerRef, buttonText}: FormUserInfoProps) => {
     const { control, watch, getValues, formState: {errors} } = useFormContext();
     let context = useContext(FormContext);
 
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
-    // const onChangeDate = (dates: [Date, Date]) => {
-    //     const [start, end] = dates;
-    //     setStartDate(start);
-    //     setEndDate(end);
-    // };
-
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
     const date = watch('date');
 
     useEffect(() => {
@@ -112,7 +107,10 @@ export const FormRegularPath = ({innerRef, buttonText}: FormUserInfoProps) => {
                         <Controller
                             name={"date"}
                             control={control}
-                            rules={{ required: true }}
+                            rules={{
+                                required: true,
+                                validate: validateDateRange
+                            }}
                             defaultValue={[null, null]}
                             render={({ field }) => {
                                 return (
