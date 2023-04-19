@@ -54,7 +54,7 @@ export const FormCustomsPath = ({innerRef, buttonText}: FormUserInfoProps) => {
                                     isRequired={true}
                                     isDisabled={cityFromIsDisabled}
                                     isMulti={false}
-                                    inputHandleMethod={(val: string) => context.updatePlacesList(val, 'from')}
+                                    inputHandleMethod={(val: string) => context.debouncedUpdatePlacesList(val, 'from')}
                                 />
                             </InputWrapper>
                         </div>
@@ -84,7 +84,7 @@ export const FormCustomsPath = ({innerRef, buttonText}: FormUserInfoProps) => {
                                     isRequired={true}
                                     isDisabled={cityToIsDisabled}
                                     isMulti={false}
-                                    inputHandleMethod={(val: string) => context.updatePlacesList(val, 'to')}
+                                    inputHandleMethod={(val: string) => context.debouncedUpdatePlacesList(val, 'to')}
                                 />
                             </InputWrapper>
                         </div>

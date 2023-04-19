@@ -1,4 +1,6 @@
 interface PlaceItemInterface {
+    lon: any;
+    lat: any;
     id: number,
     label: string,
     value: string

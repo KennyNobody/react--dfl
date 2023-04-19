@@ -23,9 +23,11 @@ function convertArray(arr: []) {
 
     arr.forEach(item => {
         newArr.push({
-            id: item['osm_id'],
+            id: item['place_id'],
             label: item['display_name'],
-            value: item['display_name']
+            value: item['display_name'],
+            lat: item['lat'],
+            lon: item['lon']
         });
     })
 

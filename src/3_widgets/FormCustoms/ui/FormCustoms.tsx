@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useMemo, useRef, useState} from "react";
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import { FormContext } from "../context/context";
 import styleTabs from "6_shared/styles/tabs-nav.module.scss";
@@ -22,6 +22,7 @@ import {sendData} from "6_shared/helpers/sendData";
 import {getMapsData} from "6_shared/helpers/getMapsData";
 import {PlaceInterface} from "6_shared/types/PlaceInterface";
 import {revertData} from "6_shared/helpers/revertData";
+const debounce = require('lodash.debounce');
 
 registerLocale('ru', ru);
 
@@ -70,6 +71,14 @@ export const FormCustoms = ({serviceTitle}: FormProps) => {
             setPlacesList([]);
         }
     }
+
+    const debouncedUpdatePlacesList = useMemo(() => debounce(updatePlacesList, 1000), []);
+
+    useEffect(() => {
+        return () => {
+            debouncedUpdatePlacesList.cancel();
+        }
+    }, []);
 
     const closeModal = (): void => setAlertVisible(false);
 
@@ -188,7 +197,7 @@ export const FormCustoms = ({serviceTitle}: FormProps) => {
                 nextSection,
                 showPlug,
                 submitData,
-                updatePlacesList,
+                debouncedUpdatePlacesList,
                 revertPlaces,
             }}>
                 <Wrapper

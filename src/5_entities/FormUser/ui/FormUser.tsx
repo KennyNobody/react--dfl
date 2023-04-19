@@ -27,14 +27,14 @@ export const FormUser = ({innerRef, buttonText}: FormUserInfoProps) => {
     return (
         <Form>
             <div className={classNames(grid.columns)} data-section-name={'userRegular'} ref={innerRef}>
-                <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
-                    <Dropdown
-                        isOpened={false}
-                        title={'Данные о грузе'}
-                    >
-                        <Info data={getValues()}/>
-                    </Dropdown>
-                </div>
+                {/*<div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>*/}
+                {/*    <Dropdown*/}
+                {/*        isOpened={false}*/}
+                {/*        title={'Данные о грузе'}*/}
+                {/*    >*/}
+                {/*        <Info data={getValues()}/>*/}
+                {/*    </Dropdown>*/}
+                {/*</div>*/}
                 <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
                     <InputWrapper title='ФИО' isRequired={true}>
                         <Input

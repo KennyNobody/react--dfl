@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react";
+import {useCallback, useEffect, useMemo, useRef, useState} from "react";
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import {FormContext} from "3_widgets/FormRegular/context/context";
 import styleTabs from "6_shared/styles/tabs-nav.module.scss";
@@ -18,6 +18,8 @@ import {sendData} from "6_shared/helpers/sendData";
 import {getMapsData} from "6_shared/helpers/getMapsData";
 import {PlaceInterface} from "6_shared/types/PlaceInterface";
 import {revertData} from "6_shared/helpers/revertData";
+import {getPlaceIndex} from "6_shared/helpers/getPlaceIndex";
+const debounce = require('lodash.debounce');
 
 type FormType = 'regular' | 'modal' | 'groupage';
 
@@ -72,6 +74,7 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
 
     const updatePlacesList = (val: string, type: 'from' | 'to') => {
         const data = formMethods.getValues(type === 'from' ? 'fromCountry' : 'toCountry');
+
         if (data && val.length > 2) {
             getMapsData(data.value, val)
                 .then((response: PlaceInterface[]) => {
@@ -82,6 +85,14 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
             setPlacesList([]);
         }
     }
+
+    const debouncedUpdatePlacesList = useMemo(() => debounce(updatePlacesList, 1000), []);
+
+    useEffect(() => {
+        return () => {
+            debouncedUpdatePlacesList.cancel();
+        }
+    }, []);
 
     const closeModal = (): void => setAlertVisible(false);
 
@@ -155,6 +166,31 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
         revertData(formMethods);
     }
 
+    const toValue = formMethods.watch('toCity');
+    const fromValue = formMethods.watch('fromCity');
+
+    useEffect(() => {
+        const data = formMethods.getValues('toCity');
+
+        console.log(data);
+
+        if (data) {
+            const {lat, lon} = data;
+
+            getPlaceIndex(lat, lon, formMethods.setValue, 'postcodeTo');
+        }
+    }, [toValue]);
+
+    useEffect(() => {
+        const data = formMethods.getValues('fromCity');
+
+        if (data) {
+            const {lat, lon} = data;
+
+            getPlaceIndex(lat, lon, formMethods.setValue, 'postcodeFrom');
+        }
+    }, [fromValue]);
+
     const [tabsList, setTabsList] = useState<TabItem[]>(
         [
             {
@@ -207,7 +243,7 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
                     showPlug,
                     submitData,
                     addItem,
-                    updatePlacesList,
+                    debouncedUpdatePlacesList,
                     revertPlaces,
                     isMultiItems,
                     itemsList,
