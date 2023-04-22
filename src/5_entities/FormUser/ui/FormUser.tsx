@@ -1,16 +1,10 @@
-import styles from "./FormUser.module.scss";
-import React, {FormEvent, ReactNode, useContext} from "react";
+import React, {useContext} from "react";
 import classNames from "classnames";
-import scrollbar from "6_shared/styles/scrollbar.module.scss";
-import {useForm, useFormContext} from "react-hook-form";
+import {useFormContext} from "react-hook-form";
 import grid from "6_shared/styles/columns.module.scss";
-import {Dropdown} from "6_shared/ui/Dropdown/ui/Dropdown";
 import {InputWrapper} from "6_shared/ui/InputWrapper/ui/InputWrapper";
 import {Input} from "6_shared/ui/Input/ui/Input";
-import {Textarea} from "6_shared/ui/Textarea/ui/Textarea";
 import {Agreement} from "6_shared/ui/Agreement/ui/Agreement";
-import {FormInterface} from "6_shared/types/FormInterface";
-import {Info} from "6_shared/ui/Info/Info";
 import {Form} from "6_shared/ui/Form/Form";
 import {ButtonNext} from "6_shared/ui/ButtonNext/ui/ButtonNext";
 import {FormContext} from "3_widgets/FormRegular/context/context";
@@ -21,20 +15,11 @@ interface FormUserInfoProps {
 }
 
 export const FormUser = ({innerRef, buttonText}: FormUserInfoProps) => {
-    const { register, getValues } = useFormContext();
     let context = useContext(FormContext);
 
     return (
         <Form>
             <div className={classNames(grid.columns)} data-section-name={'userRegular'} ref={innerRef}>
-                {/*<div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>*/}
-                {/*    <Dropdown*/}
-                {/*        isOpened={false}*/}
-                {/*        title={'Данные о грузе'}*/}
-                {/*    >*/}
-                {/*        <Info data={getValues()}/>*/}
-                {/*    </Dropdown>*/}
-                {/*</div>*/}
                 <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
                     <InputWrapper title='ФИО' isRequired={true}>
                         <Input

@@ -5,7 +5,7 @@ import {Controller, useFormContext} from "react-hook-form";
 import "6_shared/styles/selectLib.scss";
 
 interface ItemInterface {
-    value: string;
+    value: string | number;
     label: string;
 }
 

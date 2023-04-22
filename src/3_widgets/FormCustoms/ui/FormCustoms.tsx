@@ -27,7 +27,7 @@ const debounce = require('lodash.debounce');
 registerLocale('ru', ru);
 
 interface FormProps {
-    serviceTitle: string;
+    serviceTitle: number;
 }
 
 export const FormCustoms = ({serviceTitle}: FormProps) => {
@@ -174,7 +174,7 @@ export const FormCustoms = ({serviceTitle}: FormProps) => {
                 component:
                     <FormCustomsUser
                         innerRef={tabUserRef}
-                        buttonText={'Отправить'}
+                        buttonText={'Отправить предложение'}
                     />
             }
         ]
@@ -193,11 +193,11 @@ export const FormCustoms = ({serviceTitle}: FormProps) => {
     return (
         <FormProvider {...formMethods}>
             <FormContext.Provider value={{
+                debouncedUpdatePlacesList,
                 plugMode: plugDisabled,
                 nextSection,
                 showPlug,
                 submitData,
-                debouncedUpdatePlacesList,
                 revertPlaces,
             }}>
                 <Wrapper

@@ -11,7 +11,7 @@ export const PageModal = () => {
             <Title text={'Мы предлагаем регулярные мультимодальные перевозки'} />
             <FormRegular
                 formType={'modal'}
-                serviceTitle={'мультимодальные перевозки'}
+                serviceTitle={5}
             />
             <Picture preview={'ground'} />
         </Page>

@@ -11,7 +11,7 @@ export const PageSea = () => {
             <Title text={'Мы предлагаем регулярные грузовые морские перевозки'} />
             <FormRegular
                 formType={'regular'}
-                serviceTitle={'морские перевозки'}
+                serviceTitle={4}
             />
             <Picture preview={'sea'} />
         </Page>

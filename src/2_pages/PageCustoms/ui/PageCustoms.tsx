@@ -7,7 +7,7 @@ export const PageCustoms = () => {
     return (
         <Page type={'customs'}>
             <Title text={'Проверим на нетарифные меры и рассчитаем таможенные платежи'} />
-            <FormCustoms serviceTitle={'таможенное оформление'}/>
+            <FormCustoms serviceTitle={8}/>
             <Picture preview={'ground'} />
         </Page>
     );

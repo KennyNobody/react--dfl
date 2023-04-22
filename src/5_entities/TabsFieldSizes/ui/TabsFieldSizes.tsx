@@ -10,8 +10,8 @@ export const TabsFieldSizes = () => {
                 selectedTabClassName={classNames(style['tab--active'])}
             >
                 <TabList className={classNames(style['header'])}>
-                    <Tab className={classNames(style['tab'])}>Размер</Tab>
                     <Tab className={classNames(style['tab'])}>Объем</Tab>
+                    <Tab className={classNames(style['tab'])}>Размер</Tab>
                 </TabList>
 
                 <TabPanel className={classNames(style['content'])}>

@@ -24,7 +24,7 @@ const debounce = require('lodash.debounce');
 type FormType = 'regular' | 'modal' | 'groupage';
 
 interface FormProps {
-    serviceTitle: string;
+    serviceTitle: number;
     formType: FormType;
 }
 
@@ -177,7 +177,7 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
         if (data) {
             const {lat, lon} = data;
 
-            getPlaceIndex(lat, lon, formMethods.setValue, 'postcodeTo');
+            getPlaceIndex(lat, lon, formMethods.setValue, 'postcodeTo', 'cityTo');
         }
     }, [toValue]);
 
@@ -187,7 +187,7 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
         if (data) {
             const {lat, lon} = data;
 
-            getPlaceIndex(lat, lon, formMethods.setValue, 'postcodeFrom');
+            getPlaceIndex(lat, lon, formMethods.setValue, 'postcodeFrom', 'cityFrom');
         }
     }, [fromValue]);
 
@@ -217,7 +217,7 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
                 component:
                     <FormUser
                         innerRef={tabUserRef}
-                        buttonText={'Отправить'}
+                        buttonText={'Отправить предложение'}
                     />
             }
         ]

@@ -18,7 +18,7 @@ import {FormStockCargo} from "5_entities/FormStockCargo/FormStockCargo";
 import {sendData} from "6_shared/helpers/sendData";
 
 interface FormProps {
-    serviceTitle: string;
+    serviceTitle: number;
 }
 
 export const FormStock = ({serviceTitle}: FormProps) => {
@@ -111,7 +111,7 @@ export const FormStock = ({serviceTitle}: FormProps) => {
                 component:
                     <FormStockUser
                         innerRef={tabUserRef}
-                        buttonText={'Отправить'}
+                        buttonText={'Отправить предложение'}
                     />
             }
         ]

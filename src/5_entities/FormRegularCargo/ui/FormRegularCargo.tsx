@@ -61,8 +61,8 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                                     selectedTabClassName={classNames(stylesTabs['tab--active'])}
                                 >
                                     <TabList className={classNames(stylesTabs['header'])}>
-                                        <Tab className={classNames(stylesTabs['tab'])}>Размер</Tab>
                                         <Tab className={classNames(stylesTabs['tab'])}>Объем</Tab>
+                                        <Tab className={classNames(stylesTabs['tab'])}>Размер</Tab>
                                     </TabList>
 
                                     <TabPanel className={classNames(stylesTabs['content'])}>
