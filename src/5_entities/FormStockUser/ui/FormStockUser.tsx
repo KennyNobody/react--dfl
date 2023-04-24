@@ -57,7 +57,7 @@ export const FormStockUser = ({innerRef, buttonText}: FormUserInfoProps) => {
                         <Input
                             isRequired={true}
                             placeholderProp={'+7(___)___-__-__'}
-                            typeProp={'text'}
+                            typeProp={'tel'}
                             name={'phoneNumber'}
                         />
                     </InputWrapper>
@@ -67,7 +67,7 @@ export const FormStockUser = ({innerRef, buttonText}: FormUserInfoProps) => {
                         <Input
                             isRequired={true}
                             placeholderProp={'Укажите почту'}
-                            typeProp={'text'}
+                            typeProp={'email'}
                             name={'email'}
                         />
                     </InputWrapper>
@@ -94,7 +94,7 @@ export const FormStockUser = ({innerRef, buttonText}: FormUserInfoProps) => {
                 </div>
                 <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
                     <Agreement
-                        link={'/#/'}
+                        link={'./policy/'}
                         name={'privacyAgreement'}
                         isRequired={true}
                     />

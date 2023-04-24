@@ -45,7 +45,7 @@ export const FormUser = ({innerRef, buttonText}: FormUserInfoProps) => {
                         <Input
                             isRequired={true}
                             placeholderProp={'+7(___)___-__-__'}
-                            typeProp={'text'}
+                            typeProp={'tel'}
                             name={'phoneNumber'}
                         />
                     </InputWrapper>
@@ -55,7 +55,7 @@ export const FormUser = ({innerRef, buttonText}: FormUserInfoProps) => {
                         <Input
                             isRequired={true}
                             placeholderProp={'Укажите почту'}
-                            typeProp={'text'}
+                            typeProp={'email'}
                             name={'email'}
                         />
                     </InputWrapper>

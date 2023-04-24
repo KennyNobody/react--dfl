@@ -1,9 +1,9 @@
 import styles from "./Input.module.scss";
 import classNames from "classnames";
-import {useFormContext, UseFormRegister} from "react-hook-form";
-import {useEffect, useState} from "react";
+import {useFormContext} from "react-hook-form";
+import {KeyboardEventHandler} from "react";
 
-type TypeProp = 'text' | 'number';
+type TypeProp = 'text' | 'number' | 'email' | 'tel';
 
 interface InputProps {
     caption?: string;
@@ -11,10 +11,11 @@ interface InputProps {
     typeProp: TypeProp;
     defaultValue?: string | number;
     name: string;
+    usePhoneMask?: boolean;
     isRequired: boolean;
 }
 
-export const Input = ({placeholderProp, typeProp, caption, defaultValue, name, isRequired }: InputProps) => {
+export const Input = ({placeholderProp, typeProp, caption, defaultValue, name, isRequired, usePhoneMask }: InputProps) => {
     const { register, formState: {errors} } = useFormContext();
     const activeClass = caption ? styles['input--caption'] : '';
 
@@ -26,6 +27,14 @@ export const Input = ({placeholderProp, typeProp, caption, defaultValue, name, i
         val = false;
     }
 
+    const eventHandler = (el: any) => {
+        if (typeProp === 'tel') {
+            el.value = el.value.replace(/[^0-9+]/g, "");
+        } else if (typeProp === 'number') {
+            el.value = el.value.replace(/[^0-9]/g, "");
+        }
+    }
+
     return (
         <label className={classNames(styles['label'])}>
             <input
@@ -34,7 +43,9 @@ export const Input = ({placeholderProp, typeProp, caption, defaultValue, name, i
                 type={typeProp}
                 placeholder={placeholderProp}
                 defaultValue={defaultValue}
+                {...(typeProp === 'number') ? {'min': 0} : {}}
                 {...register(name, { required: isRequired })}
+                onChange={(e) => eventHandler(e.target)}
             />
             {caption && <span className={classNames(styles['caption'])}>{caption}</span>}
         </label>
