@@ -1,0 +1,23 @@
+.button {
+    gap: 6px;
+    border: none;
+    display: flex;
+    cursor: pointer;
+    background: none;
+    align-items: center;
+    transition: 0.3s opacity;
+
+    &:hover {
+        opacity: 0.7;
+    }
+}
+
+.caption {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--blue-resolution);
+}
+
+.icon {
+    display: block;
+}

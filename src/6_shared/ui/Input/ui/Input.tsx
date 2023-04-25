@@ -29,9 +29,9 @@ export const Input = ({placeholderProp, typeProp, caption, defaultValue, name, i
 
     const eventHandler = (el: any) => {
         if (typeProp === 'tel') {
-            el.value = el.value.replace(/[^0-9+]/g, "");
+            el.value = el.value.replace(/[^\d.,]/g, "");
         } else if (typeProp === 'number') {
-            el.value = el.value.replace(/[^0-9]/g, "");
+            el.value = el.value.replace(/[^\d.,]/g, "");
         }
     }
 

@@ -172,8 +172,6 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
     useEffect(() => {
         const data = formMethods.getValues('toCity');
 
-        console.log(data);
-
         if (data) {
             const {lat, lon} = data;
 
@@ -190,6 +188,19 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
             getPlaceIndex(lat, lon, formMethods.setValue, 'postcodeFrom', 'cityFrom');
         }
     }, [fromValue]);
+
+    const toCountry = formMethods.watch('toCountry');
+    const fromCountry = formMethods.watch('fromCountry');
+
+    useEffect(() => {
+        console.log('Сбрасываем город');
+        formMethods.setValue('fromCity', null);
+    }, [fromCountry]);
+
+    useEffect(() => {
+        console.log('Сбрасываем город');
+        formMethods.setValue('toCity', null);
+    }, [toCountry]);
 
     const [tabsList, setTabsList] = useState<TabItem[]>(
         [

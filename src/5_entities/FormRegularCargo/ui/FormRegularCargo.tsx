@@ -18,6 +18,7 @@ import {transportType} from "6_shared/data/select";
 import {SelectLib} from "6_shared/ui/SelectLib/ui/SelectLib";
 import {Checkbox} from "6_shared/ui/Checkbox/ui/Checkbox";
 import {FileUploader} from "6_shared/ui/FileUploader/FileUploader";
+import {ButtonAdding} from "6_shared/ui/ButtonAdding";
 
 interface FormCargoProps {
     innerRef: any;
@@ -53,6 +54,7 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                                         placeholderProp={'Укажите вес'}
                                         typeProp={'number'}
                                         name={`items.item-${i}.weight`}
+                                        caption={'Кг'}
                                     />
                                 </InputWrapper>
                             </div>
@@ -100,7 +102,6 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                             <div className={classNames(grid['columns__col--6'], grid['columns__col--mob-2'])}>
                                 <InputWrapper title='Оценочная стоимость груза' isRequired={true}>
                                     <Input
-                                        // TODO Вставить маску
                                         isRequired={true}
                                         placeholderProp={'Укажите стоимость'}
                                         typeProp={'text'}
@@ -214,6 +215,7 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                 </div>
             }
             {renderList()}
+            {!context.isMultiItems && <ButtonAdding context={context} />}
         </>
     )
 

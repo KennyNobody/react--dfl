@@ -148,6 +148,19 @@ export const FormCustoms = ({serviceTitle}: FormProps) => {
         revertData(formMethods);
     }
 
+    const toCountry = formMethods.watch('toCountry');
+    const fromCountry = formMethods.watch('fromCountry');
+
+    useEffect(() => {
+        console.log('Сбрасываем город');
+        formMethods.setValue('fromCity', null);
+    }, [fromCountry]);
+
+    useEffect(() => {
+        console.log('Сбрасываем город');
+        formMethods.setValue('toCity', null);
+    }, [toCountry]);
+
     const [tabsList, setTabsList] = useState<TabItem[]>(
         [
             {
@@ -199,6 +212,7 @@ export const FormCustoms = ({serviceTitle}: FormProps) => {
                 showPlug,
                 submitData,
                 revertPlaces,
+                placesList
             }}>
                 <Wrapper
                     size={'customs'}
