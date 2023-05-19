@@ -1,0 +1,38 @@
+.block {
+    border: 0;
+    padding: 0;
+    height: auto;
+    flex-shrink: 0;
+    margin-left: 8px;
+    background:  none;
+    width: fit-content;
+    display: inline-block;
+    transform: translateY(0.1em);
+}
+
+.icon {
+    width: 15px;
+    height: 15px;
+    fill: #B6C0EB;
+    display: block;
+    cursor: pointer;
+}
+
+.popper {
+    z-index: 3;
+    width: 100%;
+    font-size: 12px;
+    max-width: 345px;
+    line-height: 1.5;
+    padding: 6px 16px;
+    border-radius: 2px;
+    color: var(--text-primary);
+    background-color: var(--white-bg);
+    box-shadow: 0 0 30px -1px rgba(96, 107, 143, 0.3);
+
+    ul {
+        li {
+            margin-bottom: 2px;
+        }
+    }
+}

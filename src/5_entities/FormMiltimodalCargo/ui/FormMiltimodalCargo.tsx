@@ -8,6 +8,7 @@ import {Caption} from "6_shared/ui/Caption/ui/Caption";
 import {ButtonNext} from "6_shared/ui/ButtonNext/ui/ButtonNext";
 import {SectionAdd} from "5_entities/SectionAdd/SectionAdd";
 import {FormContext} from "3_widgets/FormRegular/context/context";
+import {convertDate} from "6_shared/helpers/convertDate";
 
 interface FormCargoProps {
     innerRef: any;
@@ -46,7 +47,7 @@ export const FormMiltimodalCargo = ({innerRef, buttonText}: FormCargoProps) => {
                 className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob-2'])}>
                 <Caption
                     title={'Дата погрузки:'}
-                    caption={'23.12.2022 - 26.12.2022'}
+                    caption={`${convertDate(getValues('date')[0])} - ${convertDate(getValues('date')[1])}`}
                 />
             </div>
         </div>

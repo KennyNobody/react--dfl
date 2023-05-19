@@ -13,6 +13,8 @@ import {Caption} from "6_shared/ui/Caption/ui/Caption";
 import {SelectLib} from "6_shared/ui/SelectLib/ui/SelectLib";
 import {ButtonNext} from "6_shared/ui/ButtonNext/ui/ButtonNext";
 import {FormContext} from "3_widgets/FormCustoms/context/context";
+import {TitleSection} from "6_shared/ui/TitleSection";
+import {FileUploader} from "6_shared/ui/FileUploader/ui/FileUploader";
 
 interface FormCargoProps {
     innerRef: any;
@@ -48,6 +50,13 @@ export const FormCustomsCargo = ({innerRef, buttonText}: FormCargoProps) => {
                     </div>
                 }
             </div>
+            <div className={classNames(grid['columns'], styles['section'])}>
+                <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
+                    <TitleSection informerId={2} className={styles.title}  text={'Загрузите спецификацию'} />
+                    <FileUploader maxSize={20000} context={context} name={'isFiles'} />
+                </div>
+            </div>
+            <TitleSection className={styles.title} text={'Или можете заполнить данные о грузе'} />
             <div className={classNames(grid['columns'], styles['section'])}>
                 <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
                     <InputWrapper title='Наименование (описание груза)' isRequired={!textareaRequired}>

@@ -8,12 +8,14 @@ interface RadioProps {
 }
 
 export const Radio = ({className}: RadioProps) => {
-    const { register, formState: {errors} } = useFormContext();
+    const { register, formState: {errors}, setValue } = useFormContext();
 
-    const [selectedOption, setSelectedOption] = useState(1);
+    const [selectedOption, setSelectedOption] = useState(Number(1));
 
     function handleOptionChange(event: { target: { value: any; }; }) {
         setSelectedOption(+event.target.value);
+
+        setValue('transportVariation', +event.target.value);
     }
 
     return (
@@ -21,9 +23,9 @@ export const Radio = ({className}: RadioProps) => {
             <label className={classNames(cls.label)}>
                 <input
                     type="radio"
-                    name={'transportType'}
-                    value={1}
-                    {...register('transportType')}
+                    name={'transportVariation'}
+                    value={Number(1)}
+                    {...register('transportVariation')}
                     className={classNames(cls.input)}
                     checked={selectedOption === 1}
                     onChange={handleOptionChange}
@@ -35,9 +37,9 @@ export const Radio = ({className}: RadioProps) => {
             <label className={classNames(cls.label)}>
                 <input
                     type="radio"
-                    name={'transportType'}
-                    value={2}
-                    {...register('transportType')}
+                    name={'transportVariation'}
+                    value={Number(2)}
+                    {...register('transportVariation')}
                     className={classNames(cls.input)}
                     checked={selectedOption === 2}
                     onChange={handleOptionChange}

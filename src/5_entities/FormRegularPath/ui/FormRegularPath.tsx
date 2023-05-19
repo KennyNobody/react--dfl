@@ -31,6 +31,7 @@ export const FormRegularPath = ({innerRef, buttonText}: FormUserInfoProps) => {
     useEffect(() => {
         setStartDate(date[0]);
         setEndDate(date[1]);
+        console.log(date);
     }, [date]);
 
     const [cityFromIsDisabled, setCityFromIsDisabled] = useState<boolean>(!!!getValues('fromCity'));
@@ -102,7 +103,6 @@ export const FormRegularPath = ({innerRef, buttonText}: FormUserInfoProps) => {
                     </div>
                 </div>
                 <div className={classNames(grid['columns__col'], grid['columns__col--12'])}>
-                    {/* TODO Возможно стоит сделать переключение типа с range на обычный */}
                     <InputWrapper title='Примерная дата погрузки' isRequired={true}>
                         <Controller
                             name={"date"}

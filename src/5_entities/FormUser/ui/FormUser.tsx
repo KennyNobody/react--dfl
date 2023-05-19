@@ -8,6 +8,9 @@ import {Agreement} from "6_shared/ui/Agreement/ui/Agreement";
 import {Form} from "6_shared/ui/Form/Form";
 import {ButtonNext} from "6_shared/ui/ButtonNext/ui/ButtonNext";
 import {FormContext} from "3_widgets/FormRegular/context/context";
+import styles from "5_entities/FormRegularCargo/ui/FormRegularCargo.module.scss";
+import {Caption} from "6_shared/ui/Caption/ui/Caption";
+import {convertDate} from "6_shared/helpers/convertDate";
 
 interface FormUserInfoProps {
     innerRef: any;
@@ -16,10 +19,44 @@ interface FormUserInfoProps {
 
 export const FormUser = ({innerRef, buttonText}: FormUserInfoProps) => {
     let context = useContext(FormContext);
+    const {getValues} = useFormContext();
 
     return (
         <Form>
-            <div className={classNames(grid.columns)} data-section-name={'userRegular'} ref={innerRef}>
+            <div
+                ref={innerRef}
+                className={classNames(grid['columns'], styles['section'])}
+            >
+                {getValues('fromCity') &&
+                    <div
+                        className={classNames(grid['columns__col'],
+                            grid['columns__col--3'],
+                            grid['columns__col--mob-2'])}
+                    >
+                        <Caption
+                            title={'Откуда:'}
+                            caption={getValues('fromCity').label}
+                        />
+                    </div>
+                }
+                {getValues('toCity') &&
+                    <div
+                        className={classNames(grid['columns__col'], grid['columns__col--3'], grid['columns__col--mob-2'])}>
+                        <Caption
+                            title={'Куда:'}
+                            caption={getValues('toCity').label}
+                        />
+                    </div>
+                }
+                <div
+                    className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob-2'])}>
+                    <Caption
+                        title={'Дата погрузки:'}
+                        caption={`${convertDate(getValues('date')[0])} - ${convertDate(getValues('date')[1])}`}
+                    />
+                </div>
+            </div>
+            <div className={classNames(grid.columns)} data-section-name={'userRegular'} >
                 <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
                     <InputWrapper title='ФИО' isRequired={true}>
                         <Input

@@ -8,6 +8,7 @@ import {calcFilesSize} from "6_shared/helpers/calcFilesSize";
 interface FileUploaderProps {
     name: string;
     context: any;
+    maxSize: number;
 }
 
 interface FormData {
@@ -19,7 +20,7 @@ interface FileItem {
     title: string;
 }
 
-export const FileUploader = ({ name, context }: FileUploaderProps) => {
+export const FileUploader = ({ name, context, maxSize }: FileUploaderProps) => {
     const { register, formState: { errors }, setValue } = useFormContext();
 
     const [fileList, setFileList] = useState<File[]>([]);
@@ -27,7 +28,7 @@ export const FileUploader = ({ name, context }: FileUploaderProps) => {
     const setFiles = (newList: FileList | null) => {
         const arr = Array.from(newList);
 
-        if (!calcFilesSize([...fileList, ...arr], 10000)) {
+        if (!calcFilesSize([...fileList, ...arr], maxSize)) {
             context.setAlertVisible(2);
             return false;
         } else {

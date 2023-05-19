@@ -13,6 +13,7 @@ interface FormInterface {
     toCountry?: PlaceItemInterface;
     toCity?: PlaceItemInterface;
     date?: [Date | null, Date | null];
+    transportVariation?: string | number;
 
     neededFullVolume?: boolean;
 

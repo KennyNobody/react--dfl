@@ -1,7 +1,7 @@
 import styles from "./FormRegularCargo.module.scss";
 import React, {useContext, useEffect} from "react";
 import classNames from "classnames";
-import {useFormContext} from "react-hook-form";
+import {useFormContext, useForm} from "react-hook-form";
 import grid from "6_shared/styles/columns.module.scss";
 import {Form} from "6_shared/ui/Form/Form";
 import {Caption} from "6_shared/ui/Caption/ui/Caption";
@@ -21,6 +21,7 @@ import {ButtonAdding} from "6_shared/ui/ButtonAdding";
 import {TitleSection} from "6_shared/ui/TitleSection";
 import {FileUploader} from "6_shared/ui/FileUploader/FileUploader";
 import {Radio} from "6_shared/ui/Radio";
+import {convertDate} from "6_shared/helpers/convertDate";
 
 interface FormCargoProps {
     innerRef: any;
@@ -29,7 +30,21 @@ interface FormCargoProps {
 
 export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
     let context = useContext(FormContext);
+    const { register, watch } = useForm();
+    const files = watch('isFiles');
+
+
     const {getValues} = useFormContext();
+
+    useEffect(() => {
+        console.log(files);
+    }, [files]);
+
+    const transportVariation = watch('transportVariation');
+
+    useEffect(() => {
+        console.log(transportVariation);
+    }, [transportVariation]);
 
     const renderList = () => {
         const components = [];
@@ -128,14 +143,14 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                     className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob-2'])}>
                     <Caption
                         title={'Дата погрузки:'}
-                        caption={'23.12.2022 - 26.12.2022'}
+                        caption={`${convertDate(getValues('date')[0])} - ${convertDate(getValues('date')[1])}`}
                     />
                 </div>
             </div>
             <div className={classNames(grid['columns'], styles['section'])}>
                 <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
-                    <TitleSection className={styles.title}  text={'Загрузите спецификацию'} />
-                    <FileUploader context={context} name={'isFiles'} />
+                    <TitleSection informerId={1} className={styles.title}  text={'Загрузите спецификацию'} />
+                    <FileUploader maxSize={10000} context={context} name={'isFiles'} />
                 </div>
             </div>
             <TitleSection className={styles.title} text={'Или можете заполнить данные о грузе'} />
@@ -212,7 +227,8 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                 </div>
             </div>
             {renderList()}
-            {!context.isMultiItems && <ButtonAdding context={context} />}
+
+            {getValues('transportVariation') === 2 && <ButtonAdding context={context} />}
         </>
     )
 

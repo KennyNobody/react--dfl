@@ -42,8 +42,8 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
     const [alertVisible, setAlertVisible] = useState<number>(null);
     const [sectionAdded, setSectionAdded] = useState<boolean>(false);
     const [plugDisabled, setPlugDisabled] = useState<boolean>(false);
-    const [isMultiItems, setIsMultiItems] = useState<boolean>(formType === 'groupage');
-
+    // const [isMultiItems, setIsMultiItems] = useState<boolean>(formType === 'groupage');
+    const [isMultiItems, setIsMultiItems] = useState<boolean>(true);
     const [placesList, setPlacesList] = useState<[]>([]);
 
     const formMethods = useForm<FormInterface>({
@@ -54,13 +54,20 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
         }
     });
 
-    // if (formType !== 'groupage') {
-    //     const checkboxValue = formMethods.watch('isGroupage', false);
-    //
-    //     useEffect(() => {
-    //         setIsMultiItems(!checkboxValue);
-    //     }, [checkboxValue]);
-    // }
+    if (formType !== 'groupage') {
+        const checkboxValue = formMethods.watch('transportVariation');
+
+        useEffect(() => {
+            if (checkboxValue === Number(1)) {
+                setIsMultiItems(false);
+            } else {
+                setIsMultiItems(true);
+            }
+
+            console.log('Переключили', checkboxValue);
+
+        }, [checkboxValue]);
+    }
 
 
     useEffect(() => {

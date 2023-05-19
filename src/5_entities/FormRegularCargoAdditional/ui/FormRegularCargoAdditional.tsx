@@ -16,6 +16,7 @@ import {Checkbox} from "6_shared/ui/Checkbox/ui/Checkbox";
 import {ButtonNext} from "6_shared/ui/ButtonNext/ui/ButtonNext";
 import {FormContext} from "3_widgets/FormRegular/context/context";
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
+import {convertDate} from "6_shared/helpers/convertDate";
 
 interface FormCargoRegularProps {
     innerRef: any;
@@ -45,10 +46,11 @@ export const FormRegularCargoAdditional = ({innerRef, buttonText}: FormCargoRegu
                         />
                     </div>
                 }
-                <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob-2'])}>
+                <div
+                    className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob-2'])}>
                     <Caption
                         title={'Дата погрузки:'}
-                        caption={'23.12.2022 - 26.12.2022'}
+                        caption={`${convertDate(getValues('date')[0])} - ${convertDate(getValues('date')[1])}`}
                     />
                 </div>
             </div>

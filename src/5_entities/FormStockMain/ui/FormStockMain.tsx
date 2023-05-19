@@ -28,7 +28,7 @@ export const FormStockMain = ({innerRef, buttonText}: FormUserInfoProps) => {
             <div className={classNames(grid['columns'], styles['section'])}>
                 <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
                     <TitleSection className={styles.title}  text={'Загрузите спецификацию'} />
-                    <FileUploader context={context} name={'isFiles'} />
+                    <FileUploader maxSize={10000} context={context} name={'isFiles'} />
                 </div>
             </div>
             <TitleSection className={styles.title}  text={'Или заполните данные о грузе'} />

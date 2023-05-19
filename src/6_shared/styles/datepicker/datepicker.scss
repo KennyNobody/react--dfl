@@ -473,7 +473,8 @@
         color: rgb(0, 0, 0);
 
         &:hover {
-            background-color: darken($datepicker__selected-color, 5%);
+            color: #ffffff;
+            background-color: #273366;
         }
     }
 
