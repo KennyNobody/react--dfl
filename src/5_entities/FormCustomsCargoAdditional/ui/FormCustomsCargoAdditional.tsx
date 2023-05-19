@@ -24,7 +24,7 @@ export const FormCustomsCargoAdditional = ({innerRef, buttonText}: FormCargoProp
         <Form>
             <div className={classNames(grid['columns'], styles['section'])} data-section-name={'cargoCustomAdditional'} ref={innerRef}>
                 {getValues('fromCity') &&
-                    <div className={classNames(grid['columns__col'], grid['columns__col--3'], grid['columns__col--mob--2'])}>
+                    <div className={classNames(grid['columns__col'], grid['columns__col--3'], grid['columns__col--mob-2'])}>
                         <Caption
                             title={'Откуда:'}
                             caption={getValues('fromCity').label}
@@ -32,7 +32,7 @@ export const FormCustomsCargoAdditional = ({innerRef, buttonText}: FormCargoProp
                     </div>
                 }
                 {getValues('toCity') &&
-                    <div className={classNames(grid['columns__col'], grid['columns__col--3'], grid['columns__col--mob--2'])}>
+                    <div className={classNames(grid['columns__col'], grid['columns__col--3'], grid['columns__col--mob-2'])}>
                         <Caption
                             title={'Куда:'}
                             caption={getValues('toCity').label}

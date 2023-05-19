@@ -1,0 +1,42 @@
+.parent {
+    width: 100%;
+    display: flex;
+}
+
+@media (max-width: 1080px) {
+    .parent {
+        display: block;
+    }
+}
+
+.label {
+    width: 50%;
+    display: block;
+    cursor: pointer;
+}
+
+@media (max-width: 1080px) {
+    .label {
+        width: 100%;
+    }
+}
+
+.input {
+    display: none;
+
+    &:checked + .item {
+        color: var(--white-bg);
+        background-color: var(--blue-primary);
+    }
+}
+
+.item {
+    display: flex;
+    font-size: 11px;
+    min-height: 25px;
+    align-items: center;
+    transition: 0.3s all;
+    justify-content: center;
+    color: var(--text-secondary-2);
+    background-color: var(--blue-bg-hover);
+}

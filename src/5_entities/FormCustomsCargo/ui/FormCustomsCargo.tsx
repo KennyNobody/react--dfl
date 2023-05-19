@@ -5,13 +5,12 @@ import {Controller, useForm, useFormContext} from "react-hook-form";
 import grid from "6_shared/styles/columns.module.scss";
 import {InputWrapper} from "6_shared/ui/InputWrapper/ui/InputWrapper";
 import {Input} from "6_shared/ui/Input/ui/Input";
-import {cities, countries, transportType} from "6_shared/data/select";
+import {cities, countries, deliveryCondition, procedure, transportType} from "6_shared/data/select";
 import {Textarea} from "6_shared/ui/Textarea/ui/Textarea";
 import {Form} from "6_shared/ui/Form/Form";
 import {SectionAdd} from "5_entities/SectionAdd/SectionAdd";
 import {Caption} from "6_shared/ui/Caption/ui/Caption";
 import {SelectLib} from "6_shared/ui/SelectLib/ui/SelectLib";
-import {FileUploader} from "6_shared/ui/FileUploader/FileUploader";
 import {ButtonNext} from "6_shared/ui/ButtonNext/ui/ButtonNext";
 import {FormContext} from "3_widgets/FormCustoms/context/context";
 
@@ -33,7 +32,7 @@ export const FormCustomsCargo = ({innerRef, buttonText}: FormCargoProps) => {
                 className={classNames(grid['columns'], styles['section'])}
             >
                 {getValues('fromCity') &&
-                    <div className={classNames(grid['columns__col'], grid['columns__col--3'], grid['columns__col--mob--2'])}>
+                    <div className={classNames(grid['columns__col'], grid['columns__col--3'], grid['columns__col--mob-2'])}>
                         <Caption
                             title={'Откуда:'}
                             caption={getValues('fromCity').label}
@@ -41,7 +40,7 @@ export const FormCustomsCargo = ({innerRef, buttonText}: FormCargoProps) => {
                     </div>
                 }
                 {getValues('toCity') &&
-                    <div className={classNames(grid['columns__col'], grid['columns__col--3'], grid['columns__col--mob--2'])}>
+                    <div className={classNames(grid['columns__col'], grid['columns__col--3'], grid['columns__col--mob-2'])}>
                         <Caption
                             title={'Куда:'}
                             caption={getValues('toCity').label}
@@ -51,22 +50,33 @@ export const FormCustomsCargo = ({innerRef, buttonText}: FormCargoProps) => {
             </div>
             <div className={classNames(grid['columns'], styles['section'])}>
                 <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
-                    <InputWrapper title='Заявляемый таможенный режим при ввозе в РФ' isRequired={true}>
-                        <Input
-                            isRequired={true}
-                            placeholderProp={'Укажите таможенный режим'}
-                            typeProp={'text'}
-                            name={'customsType'}
+                    <InputWrapper title='Наименование (описание груза)' isRequired={!textareaRequired}>
+                        <Textarea
+                            isRequired={!textareaRequired}
+                            nameProps={'cargoDescription'}
+                            placeholderProp={'Укажите название и опишите груз'}
                         />
                     </InputWrapper>
                 </div>
-                <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob-2'])}>
-                    <InputWrapper title='Название груза' isRequired={true}>
-                        <Input
+                <div className={classNames(grid['columns__col--12'], grid['columns__col--mob-2'])}>
+                    <InputWrapper title='Таможенная процедура' isRequired={true}>
+                        <SelectLib
+                            listArr={procedure}
+                            name={`procedure`}
+                            placeholder={'Выберите таможенную процедуру'}
                             isRequired={true}
-                            placeholderProp={'Укажите название'}
-                            typeProp={'text'}
-                            name={'cargoName'}
+                            isMulti={false}
+                        />
+                    </InputWrapper>
+                </div>
+                <div className={classNames(grid['columns__col--6'], grid['columns__col--mob-2'])}>
+                    <InputWrapper title='Условие поставки' isRequired={true}>
+                        <SelectLib
+                            listArr={deliveryCondition}
+                            name={`deliveryCondition`}
+                            placeholder={'Выберите условие'}
+                            isRequired={true}
+                            isMulti={false}
                         />
                     </InputWrapper>
                 </div>
@@ -81,7 +91,7 @@ export const FormCustomsCargo = ({innerRef, buttonText}: FormCargoProps) => {
                     </InputWrapper>
                 </div>
                 <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob-2'])}>
-                    <InputWrapper title='Откуда' isRequired={true}>
+                    <InputWrapper title='Страна происхождения груза' isRequired={true}>
                         <SelectLib
                             listArr={countries}
                             name={'cargoFromCountry'}
@@ -123,17 +133,8 @@ export const FormCustomsCargo = ({innerRef, buttonText}: FormCargoProps) => {
                         />
                     </InputWrapper>
                 </div>
-                <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob-2'])}>
-                    <InputWrapper title='Наличие сертификатов' isRequired={true}>
-                        <Input
-                            isRequired={true}
-                            placeholderProp={'Укажите сертификаты'}
-                            typeProp={'text'}
-                            name={'certificates'}
-                        />
-                    </InputWrapper>
-                </div>
-                <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob-2'])}>
+
+                <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
                     <InputWrapper title='Инвойсная стоимость' isRequired={true}>
                         <Input
                             isRequired={true}
@@ -144,17 +145,7 @@ export const FormCustomsCargo = ({innerRef, buttonText}: FormCargoProps) => {
                         />
                     </InputWrapper>
                 </div>
-                <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
-                    <InputWrapper title='Описание груза' isRequired={!textareaRequired}>
-                        <Textarea
-                            isRequired={!textareaRequired}
-                            nameProps={'cargoDescription'}
-                            placeholderProp={'Опишите груз'}
-                        />
-                    </InputWrapper>
-                </div>
             </div>
-            <FileUploader name={'isFile'}/>
         </div>
     )
 

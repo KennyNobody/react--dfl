@@ -26,7 +26,7 @@ export const FormMiltimodalCargo = ({innerRef, buttonText}: FormCargoProps) => {
         >
             {getValues('fromCity') &&
                 <div
-                    className={classNames(grid['columns__col'], grid['columns__col--3'], grid['columns__col--mob--2'])}>
+                    className={classNames(grid['columns__col'], grid['columns__col--3'], grid['columns__col--mob-2'])}>
                     <Caption
                         title={'Откуда:'}
                         caption={getValues('fromCity').label}
@@ -35,7 +35,7 @@ export const FormMiltimodalCargo = ({innerRef, buttonText}: FormCargoProps) => {
             }
             {getValues('toCity') &&
                 <div
-                    className={classNames(grid['columns__col'], grid['columns__col--3'], grid['columns__col--mob--2'])}>
+                    className={classNames(grid['columns__col'], grid['columns__col--3'], grid['columns__col--mob-2'])}>
                     <Caption
                         title={'Куда:'}
                         caption={getValues('toCity').label}
@@ -43,7 +43,7 @@ export const FormMiltimodalCargo = ({innerRef, buttonText}: FormCargoProps) => {
                 </div>
             }
             <div
-                className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob--2'])}>
+                className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob-2'])}>
                 <Caption
                     title={'Дата погрузки:'}
                     caption={'23.12.2022 - 26.12.2022'}

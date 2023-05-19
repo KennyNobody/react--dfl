@@ -42,9 +42,9 @@ export const FormRegularPath = ({innerRef, buttonText}: FormUserInfoProps) => {
     return (
         <Form>
             <div className={classNames(grid['columns'])} data-section-name={'pathRegular'} ref={innerRef}>
-                <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob--2'])}>
+                <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
                     <div className={classNames(grid['columns'], grid['columns--end'])}>
-                        <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob--2'])}>
+                        <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob-2'])}>
                             <InputWrapper title='Откуда' isRequired={true}>
                                 <SelectLib
                                     listArr={countries}
@@ -56,7 +56,7 @@ export const FormRegularPath = ({innerRef, buttonText}: FormUserInfoProps) => {
                                 />
                             </InputWrapper>
                         </div>
-                        <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob--2'])}>
+                        <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob-2'])}>
                             <InputWrapper>
                                 <SelectLib
                                     listArr={context.placesList}
@@ -74,7 +74,7 @@ export const FormRegularPath = ({innerRef, buttonText}: FormUserInfoProps) => {
                 </div>
                 <div className={classNames(grid['columns__col'], grid['columns__col--12'])}>
                     <div className={classNames(grid['columns'], grid['columns--end'])}>
-                        <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob--2'])}>
+                        <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob-2'])}>
                             <InputWrapper title='Куда' isRequired={true}>
                                 <SelectLib
                                     listArr={countries}
@@ -86,7 +86,7 @@ export const FormRegularPath = ({innerRef, buttonText}: FormUserInfoProps) => {
                                 />
                             </InputWrapper>
                         </div>
-                        <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob--2'])}>
+                        <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob-2'])}>
                             <InputWrapper>
                                 <SelectLib
                                     listArr={context.placesList}

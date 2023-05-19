@@ -19,15 +19,16 @@ function validateSection(key: number, formData: any): boolean {
 
 
             if (fields[i] === 'items') {
-                // @ts-ignore
                 const itemScheme = validateScheme['item'];
 
-                for (let item in formData.items) {
-                    if (item.hasOwnProperty(itemScheme[i])) {
+
+                try {
+                    if (formData.items[0].hasOwnProperty(itemScheme[i])) {
                         mode = false;
                         break;
                     }
-                }
+                } catch {/**/}
+
             }
 
             mode = false;

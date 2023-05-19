@@ -19,7 +19,11 @@
     }
 
     &--stock {
-        max-height: 286px;
+        max-height: 320px;
+
+        .wrapper__content {
+            overflow-y: auto;
+        }
     }
 
     &--customs {

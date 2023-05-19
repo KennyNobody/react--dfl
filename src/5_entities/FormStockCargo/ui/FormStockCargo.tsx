@@ -31,46 +31,37 @@ export const FormStockCargo = ({innerRef, buttonText}: FormCargoStockProps) => {
                 title={'Данные о грузе'}
             >
                 <div className={classNames(grid['columns'])} data-section-name={'cargoStock'} ref={innerRef}>
-                    <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob--2'])}>
-                        <InputWrapper title='Количество товарных позиций SKU' isRequired={true}>
+                    <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
+                        <InputWrapper title='Массогабаритные характеристики грузового места' isRequired={true} line={true}>
                             <Input
                                 isRequired={true}
-                                placeholderProp={'Укажите количество'}
+                                placeholderProp={'Длина'}
                                 typeProp={'number'}
-                                name={'skuPositionQuantity'}
+                                name={'length'}
                             />
-                        </InputWrapper>
-                    </div>
-                    <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob--2'])}>
-                        <InputWrapper title='Среднее кол-во позиций в товарной накладной на отгрузку товара со склада' isRequired={true}>
                             <Input
                                 isRequired={true}
-                                placeholderProp={'Укажите количество'}
-                                typeProp={'text'}
-                                name={'averagePositionQuantity'}
+                                placeholderProp={'Ширина'}
+                                typeProp={'number'}
+                                name={'width'}
                             />
-                        </InputWrapper>
-                    </div>
-                    <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob--2'])}>
-                        <InputWrapper title='Среднее кол-во отправок со склада' isRequired={true}>
                             <Input
                                 isRequired={true}
-                                placeholderProp={'Укажите количество'}
-                                typeProp={'text'}
-                                name={'averageSendingQuantity'}
+                                placeholderProp={'Высота'}
+                                typeProp={'number'}
+                                caption={'М'}
+                                name={'height'}
                             />
-                        </InputWrapper>
-                    </div>
-                    <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob--2'])}>
-                        <InputWrapper title='Среднее кол-во поступлений на склад' isRequired={true}>
                             <Input
                                 isRequired={true}
-                                placeholderProp={'Укажите количество'}
-                                typeProp={'text'}
-                                name={'averageArrivalQuantity'}
+                                placeholderProp={'Вес'}
+                                typeProp={'number'}
+                                caption={'Кг'}
+                                name={'weight'}
                             />
                         </InputWrapper>
                     </div>
+
                     <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
                         <InputWrapper title='Средний остаток товара на складе в месяц' isRequired={true}>
                             <Tabs
@@ -78,7 +69,7 @@ export const FormStockCargo = ({innerRef, buttonText}: FormCargoStockProps) => {
                             >
                                 <TabList className={classNames(style['header'])}>
                                     <Tab className={classNames(style['tab'])}>М3</Tab>
-                                    <Tab className={classNames(style['tab'])}>Паллет</Tab>
+                                    <Tab className={classNames(style['tab'])}>Кол-во грузовых мест</Tab>
                                 </TabList>
 
                                 <TabPanel className={classNames(style['content'])}>
@@ -109,7 +100,7 @@ export const FormStockCargo = ({innerRef, buttonText}: FormCargoStockProps) => {
                             >
                                 <TabList className={classNames(style['header'])}>
                                     <Tab className={classNames(style['tab'])}>М3</Tab>
-                                    <Tab className={classNames(style['tab'])}>Паллет</Tab>
+                                    <Tab className={classNames(style['tab'])}>Кол-во грузовых мест</Tab>
                                 </TabList>
 
                                 <TabPanel className={classNames(style['content'])}>
@@ -140,7 +131,7 @@ export const FormStockCargo = ({innerRef, buttonText}: FormCargoStockProps) => {
                             >
                                 <TabList className={classNames(style['header'])}>
                                     <Tab className={classNames(style['tab'])}>М3</Tab>
-                                    <Tab className={classNames(style['tab'])}>Паллет</Tab>
+                                    <Tab className={classNames(style['tab'])}>Кол-во грузовых мест</Tab>
                                 </TabList>
 
                                 <TabPanel className={classNames(style['content'])}>

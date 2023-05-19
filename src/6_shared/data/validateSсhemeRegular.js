@@ -22,7 +22,8 @@ const validateScheme = {
         'cargoLength',
         'cargoWidth',
         'cargoHeight',
-        'cargoDescription'
+        'cargoDescription',
+        'customsCodes'
     ],
     'userRegular': [
         'fullName',
@@ -36,25 +37,21 @@ const validateScheme = {
     // Хранение
     'stockMain': [
         'name',
-        'weight',
-        'volume',
-        'length',
-        'width',
-        'height',
+        'caption',
+        'skuPositionQuantity',
+        'averageArrivalQuantity',
+        'averageSendingQuantity',
+        'averagePositionQuantity',
     ],
     // Хранение "О грузе"
     'cargoStock': [
-        'skuPositionQuantity',
-        'averagePositionQuantity',
-        'averageSendingQuantity',
-        'averageArrivalQuantity',
         'balancePerMonthVolume',
         'balancePerMonthQuantity',
         'averageReceiptMonthVolume',
         'averageReceiptMonthQuantity',
         'averageShipmentVolume',
         'averageShipmentQuantity',
-        'cargoDescription'
+        'cargoDescription',
     ],
     // Таможенное оформление
     'pathCustom': [
@@ -63,18 +60,20 @@ const validateScheme = {
         'toCountry',
         'toCity',
     ],
-    'customCargo': [
-        'customsType',
-        'cargoName',
+    'customCargo':  [
+        // 'customsType',
+        // 'cargoName',
         'valuesList',
         'cargoFromCountry',
         'quantityPlaces',
         'netWeight',
         'grossWeight',
-        'certificates',
+        // 'certificates',
         'invoicePrice',
         'cargoDescription',
-        'isFile'
+        'isFile',
+        'deliveryCondition',
+        'procedure'
     ],
     'cargoCustomAdditional': [
         'terminal',
@@ -99,7 +98,8 @@ const validateScheme = {
         'cargoDescription',
         'pastExperience',
         'deliveriesAlreadyBeen',
-        'items'
+        'items',
+        'transportType'
     ],
     'cargoRegularAdditional': [
 

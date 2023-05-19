@@ -19,6 +19,7 @@ import {getMapsData} from "6_shared/helpers/getMapsData";
 import {PlaceInterface} from "6_shared/types/PlaceInterface";
 import {revertData} from "6_shared/helpers/revertData";
 import {getPlaceIndex} from "6_shared/helpers/getPlaceIndex";
+
 const debounce = require('lodash.debounce');
 
 type FormType = 'regular' | 'modal' | 'groupage';
@@ -38,7 +39,7 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
     const [tabIndex, setTabIndex] = useState<number>(0);
     const [itemsList, setItemsList] = useState<number>(1);
     const [formFullSize, setFormFullSize] = useState<boolean>(false);
-    const [alertVisible, setAlertVisible] = useState<boolean>(false);
+    const [alertVisible, setAlertVisible] = useState<number>(null);
     const [sectionAdded, setSectionAdded] = useState<boolean>(false);
     const [plugDisabled, setPlugDisabled] = useState<boolean>(false);
     const [isMultiItems, setIsMultiItems] = useState<boolean>(formType === 'groupage');
@@ -46,21 +47,20 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
     const [placesList, setPlacesList] = useState<[]>([]);
 
     const formMethods = useForm<FormInterface>({
-        mode: "onChange",
+        // mode: "onChange",
         shouldUnregister: false,
         defaultValues: {
             'date': [null, null]
         }
     });
 
-    if (formType !== 'groupage') {
-        // @ts-ignore
-        const checkboxValue = formMethods.watch('isGroupage', false);
-
-        useEffect(() => {
-            setIsMultiItems(!checkboxValue);
-        }, [checkboxValue]);
-    }
+    // if (formType !== 'groupage') {
+    //     const checkboxValue = formMethods.watch('isGroupage', false);
+    //
+    //     useEffect(() => {
+    //         setIsMultiItems(!checkboxValue);
+    //     }, [checkboxValue]);
+    // }
 
 
     useEffect(() => {
@@ -69,7 +69,7 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
         if (tabIndex !== 0) setFormFullSize(true);
         else setFormFullSize(false);
 
-        setAlertVisible(false);
+        setAlertVisible(null);
     }, [tabIndex]);
 
     const updatePlacesList = (val: string, type: 'from' | 'to') => {
@@ -94,7 +94,7 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
         }
     }, []);
 
-    const closeModal = (): void => setAlertVisible(false);
+    const closeModal = (): void => setAlertVisible(null);
 
     const isValidSection = (): boolean => {
         const tabName =
@@ -115,12 +115,12 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
         if (index < prevIndexRef.current) {
             if (index !== 0) setFormFullSize(true);
             else setFormFullSize(false);
-            setAlertVisible(false);
+            setAlertVisible(null);
             setTabIndex(index);
         } else {
             formMethods.trigger().then(() => {
                 if (isValidSection()) setTabIndex(index);
-                else setAlertVisible(true);
+                else setAlertVisible(1);
             });
         }
     }
@@ -132,7 +132,7 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
                 data['serviceName'] = serviceTitle;
                 sendData(data);
             }
-            else setAlertVisible(true);
+            else setAlertVisible(1);
         });
     }
 
@@ -157,7 +157,7 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
                 else if (!sectionAdded) addSection();
                 else console.error('Такого условия нет');
             } else {
-                setAlertVisible(true);
+                setAlertVisible(1);
             }
         });
     }
@@ -193,12 +193,10 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
     const fromCountry = formMethods.watch('fromCountry');
 
     useEffect(() => {
-        console.log('Сбрасываем город');
         formMethods.setValue('fromCity', null);
     }, [fromCountry]);
 
     useEffect(() => {
-        console.log('Сбрасываем город');
         formMethods.setValue('toCity', null);
     }, [toCountry]);
 
@@ -256,6 +254,7 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
                     addItem,
                     debouncedUpdatePlacesList,
                     revertPlaces,
+                    setAlertVisible,
                     isMultiItems,
                     itemsList,
                     placesList
@@ -286,7 +285,7 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
                         ))}
                     </Tabs>
 
-                    {alertVisible && <Alert closeModal={closeModal}/>}
+                    {alertVisible && <Alert errorId={alertVisible} closeModal={closeModal}/>}
                 </Wrapper>
             </FormContext.Provider>
         </FormProvider>

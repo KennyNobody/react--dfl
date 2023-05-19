@@ -1,27 +1,52 @@
 import styles from "./FileUploader.module.scss";
 import classNames from "classnames";
 import IconFile from "6_shared/assets/icons/icon-file.svg";
-import IconAccent from "6_shared/assets/icons/icon-accent.svg";
-import React, {useState} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import {useFormContext} from "react-hook-form";
+import {calcFilesSize} from "6_shared/helpers/calcFilesSize";
 
 interface FileUploaderProps {
-    name: string
+    name: string;
+    context: any;
 }
 
 interface FormData {
     file: FileList;
 }
 
-export const FileUploader = ({name}: FileUploaderProps) => {
-    const { register, formState: {errors}, setValue } = useFormContext();
+interface FileItem {
+    index: number;
+    title: string;
+}
 
-    const [filename, setFilename] = useState<string>('Прикрепить спецификацию');
+export const FileUploader = ({ name, context }: FileUploaderProps) => {
+    const { register, formState: { errors }, setValue } = useFormContext();
 
-    const changeInputField = (el: HTMLInputElement) => setFilename(el.files[0].name);
-    const setFile = (file: File) => {
-        setValue(name, file);
+    const [fileList, setFileList] = useState<File[]>([]);
+
+    const setFiles = (newList: FileList | null) => {
+        const arr = Array.from(newList);
+
+        if (!calcFilesSize([...fileList, ...arr], 10000)) {
+            context.setAlertVisible(2);
+            return false;
+        } else {
+            setFileList((prevFileList:File[]) => [...prevFileList, ...arr]);
+        }
+    };
+
+    const removeItem = (index: number, event: React.MouseEvent) => {
+        event.preventDefault();
+        const newFiles = [...fileList];
+        newFiles.splice(index, 1);
+        setFileList(newFiles);
     }
+
+    useEffect(() => {
+        fileList.map((item, index) => {
+            setValue(`file-${index}`, item);
+        });
+    }, [fileList]);
 
     return (
         <label className={classNames(styles['wrapper'])}>
@@ -29,16 +54,29 @@ export const FileUploader = ({name}: FileUploaderProps) => {
                 className={classNames(styles['input'])}
                 type="file"
                 name={name}
+                multiple
                 {...register(name, { required: false })}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    changeInputField(e.target);
-                    setFile(e.target.files[0])
-                }}/>
+                    setFiles(e.target.files);
+                }}
+            />
             <IconFile className={classNames(styles['iconFile'])} />
-            <p className={classNames(styles['caption'])}>
-                {filename}
-            </p>
-            <IconAccent  className={classNames(styles['iconAccent'])} />
+
+            <ul className={styles.list}>
+                {fileList.length === 0 && <li className={classNames(styles.item)}>
+                    Прикрепить файлы
+                </li> }
+                {fileList.length > 0 &&
+                    fileList.map((item, index) => (
+                        <li
+                            key={index}
+                            onClick={(e) => removeItem(index, e)}
+                            className={classNames(styles.item)}
+                        >
+                            {item.name}
+                        </li>
+                    ))}
+            </ul>
         </label>
     );
 };

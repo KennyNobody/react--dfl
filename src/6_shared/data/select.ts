@@ -1,4 +1,10 @@
-const hazardClass = [
+interface SelectArticle {
+    id: number;
+    value: string | number;
+    label: string;
+}
+
+const hazardClass: SelectArticle[] = [
     {
         id: 1,
         value: '1-й - вещества чрезвычайно опасные',
@@ -19,9 +25,9 @@ const hazardClass = [
         value: '4-й - вещества малоопасные',
         label: '4-й - вещества малоопасные'
     }
-]
+];
 
-const additionalServices = [
+const additionalServices: SelectArticle[] = [
     {
         id: 1,
         value: 'service-1',
@@ -37,52 +43,57 @@ const additionalServices = [
         value: 'service-3',
         label: 'Складское хранение'
     }
-]
+];
 
-const transportType = [
+const transportType: SelectArticle[] = [
     {
         id: 1,
         value: 1,
-        label: 'Морской 20 футовый контейнер'
+        label: 'Тент 90м3'
     },
     {
         id: 2,
         value: 2,
-        label: 'Морской 40 футовый контейнер'
+        label: 'Тент 120 м3'
     },
     {
         id: 3,
         value: 3,
-        label: 'Морской 20 футовый контейнер повышенной вместимости'
+        label: 'Реф'
     },
     {
         id: 4,
         value: 5,
-        label: 'Авто, тент'
+        label: 'Контейнер 40 DC'
     },
     {
         id: 5,
         value: 5,
-        label: 'Авто, реф'
+        label: 'Контейнер 40 HC'
     },
     {
         id: 6,
         value: 6,
-        label: 'Авто, другое'
+        label: 'Контейнер 20 DC'
     },
     {
         id: 7,
         value: 7,
-        label: 'Авиа'
+        label: 'ЖД'
     },
     {
         id: 8,
         value: 8,
-        label: 'Ж/Д'
+        label: 'Авиа'
+    },
+    {
+        id: 9,
+        value: 9,
+        label: 'Иное'
     }
-]
+];
 
-const countries = [
+const countries: SelectArticle[] = [
     {id: 1, value: 'BY', label: 'Беларусь'},
     {id: 2, value: 'RU', label: 'Россия'},
     {id: 3, label: 'Afghanistan', value: 'AF'},
@@ -327,9 +338,9 @@ const countries = [
     {id: 242, label: 'Yemen', value: 'YE'},
     {id: 243, label: 'Zambia', value: 'ZM'},
     {id: 244, label: 'Zimbabwe', value: 'ZW'}
-]
+];
 
-const cities = [
+const cities: SelectArticle[] = [
     {
         id: 1,
         value: 'city_1',
@@ -365,6 +376,170 @@ const cities = [
         value: 'city_7',
         label: 'Название города 7'
     }
+];
+
+const procedure: SelectArticle[] = [
+    {
+        id: 1,
+        value: 'ИМ40',
+        label: 'ИМ40 — выпуск для внутреннего потребления'
+    },
+    {
+        id: 2,
+        value: 'ИМ51',
+        label: 'ИМ51 — переработка на таможенной территории'
+    },
+    {
+        id: 3,
+        value: 'ИМ53',
+        label: 'ИМ53 — временный ввоз (допуск)'
+    },
+    {
+        id: 4,
+        value: 'ИМ60',
+        label: 'ИМ60 — реимпорт'
+    },
+    {
+        id: 5,
+        value: 'ИМ70',
+        label: 'ИМ70 — таможенный склад'
+    },
+    {
+        id: 6,
+        value: 'ИМ91',
+        label: 'ИМ91 — переработка для внутреннего потребления'
+    },
+    {
+        id: 7,
+        value: 'ИМ93',
+        label: 'ИМ93 — уничтожение'
+    },
+    {
+        id: 8,
+        value: 'ИМ94',
+        label: 'ИМ94 — отказ в пользу государства'
+    },
+    {
+        id: 9,
+        value: 'ЭК10',
+        label: 'ЭК10 — экспорт'
+    },
+    {
+        id: 10,
+        value: 'ЭК21',
+        label: 'ЭК21 — переработка вне таможенной территории'
+    },
+    {
+        id: 11,
+        value: 'ЭК23',
+        label: 'ЭК23 — временный вывоз'
+    },
+    {
+        id: 12,
+        value: 'ЭК31',
+        label: 'ЭК31 — реэкспорт'
+    },
+    {
+        id: 13,
+        value: 'ИМ77/ЭК77',
+        label: 'ИМ77/ЭК77 — свободный склад'
+    },
+    {
+        id: 14,
+        value: 'ИМ78/ЭК78',
+        label: 'ИМ78/ЭК78 — свободная таможенная зона'
+    },
+    {
+        id: 15,
+        value: 'ИМ90/ЭК90',
+        label: 'ИМ90/ЭК90 — специальная таможенная процедура'
+    },
+    {
+        id: 16,
+        value: 'ИМ96/ЭК96',
+        label: 'ИМ96/ЭК96 — беспошлинная торговля'
+    },
+    {
+        id: 17,
+        value: 'ТТ',
+        label: 'ТТ — таможенный транзит'
+    }
+];
+
+const deliveryCondition: SelectArticle[] = [
+    {
+        id: 1,
+        value: 'EXW',
+        label: 'EXW'
+    },
+    {
+        id: 2,
+        value: 'FCA',
+        label: 'FCA'
+    },
+    {
+        id: 3,
+        value: 'FAS',
+        label: 'FAS'
+    },
+    {
+        id: 4,
+        value: 'FOB',
+        label: 'FOB'
+    },
+    {
+        id: 5,
+        value: 'CPT',
+        label: 'CPT'
+    },
+    {
+        id: 6,
+        value: 'CIP',
+        label: 'CIP'
+    },
+    {
+        id: 7,
+        value: 'CFR',
+        label: 'CFR'
+    },
+    {
+        id: 8,
+        value: 'CIF',
+        label: 'CIF'
+    },
+    {
+        id: 9,
+        value: 'DAP',
+        label: 'DAP'
+    },
+    {
+        id: 10,
+        value: 'DPU',
+        label: 'DPU'
+    },
+    {
+        id: 11,
+        value: 'DDP',
+        label: 'DDP'
+    }
+];
+
+const packageList: SelectArticle[] = [
+    {
+        id: 1,
+        value: 'В короба',
+        label: 'В короба'
+    },
+    {
+        id: 2,
+        value: 'На паллеты',
+        label: 'На паллеты'
+    },
+    {
+        id: 3,
+        value: 'Другое',
+        label: 'Другое'
+    }
 ]
 
 export {
@@ -372,5 +547,8 @@ export {
     additionalServices,
     transportType,
     countries,
-    cities
+    cities,
+    procedure,
+    deliveryCondition,
+    packageList
 };

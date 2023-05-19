@@ -6,11 +6,12 @@ function sendData(data: any) {
     formData.append('data', JSON.stringify(data));
 
     const keys = Object.keys(data);
+    let fileCounter = 0;
 
     keys.forEach(key => {
-        if (key.includes("isFile")) {
-            console.log(data[key]);
-            formData.append(key, data[key]);
+        if (key.includes("file-")) {
+            formData.append(`file-${fileCounter}`, data[key]);
+            fileCounter++;
         }
     });
 

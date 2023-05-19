@@ -73,6 +73,16 @@
 
 @media (max-width: 700px) {
     .columns {
+        &__col {
+            &--12 {
+                grid-column: span 2;
+            }
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    .columns {
         gap: 14px;
         grid-template-columns:  minmax(0, 1fr) minmax(0, 1fr);
 

@@ -7,9 +7,10 @@ interface InputWrapperProps {
     title?: string;
     children: ReactNode;
     isRequired?: boolean;
+    line?: boolean;
 }
 
-export const InputWrapper = ({title, children, isRequired}: InputWrapperProps) => {
+export const InputWrapper = ({title, children, isRequired, line}: InputWrapperProps) => {
     return (
         <div className={classNames(styles['wrapper'])}>
             {title &&
@@ -18,7 +19,9 @@ export const InputWrapper = ({title, children, isRequired}: InputWrapperProps) =
                     {isRequired && <span className={classNames(styles['required'])}>*</span>}
                 </p>
             }
-            { children }
+            <div className={classNames({[styles['line']]: line})}>
+                { children }
+            </div>
         </div>
     );
 };
