@@ -1,11 +1,11 @@
 import styles from "./FormCustomsCargo.module.scss";
-import React, {FormEvent, useContext, useState} from "react";
+import React, {useContext} from "react";
 import classNames from "classnames";
-import {Controller, useForm, useFormContext} from "react-hook-form";
+import {useFormContext} from "react-hook-form";
 import grid from "6_shared/styles/columns.module.scss";
 import {InputWrapper} from "6_shared/ui/InputWrapper/ui/InputWrapper";
 import {Input} from "6_shared/ui/Input/ui/Input";
-import {cities, countries, deliveryCondition, procedure, transportType} from "6_shared/data/select";
+import {countries, deliveryCondition, procedure} from "6_shared/data/select";
 import {Textarea} from "6_shared/ui/Textarea/ui/Textarea";
 import {Form} from "6_shared/ui/Form/Form";
 import {SectionAdd} from "5_entities/SectionAdd/SectionAdd";
@@ -161,11 +161,11 @@ export const FormCustomsCargo = ({innerRef, buttonText}: FormCargoProps) => {
     return (
         <Form>
             {!context.plugMode && mainForm}
-            {context.plugMode && <SectionAdd buttonEvent={context.nextSection} />}
-            <ButtonNext
+            {context.plugMode && <SectionAdd context={context} buttonEvent={context.nextSection} />}
+            {!context.plugMode && <ButtonNext
                 text={buttonText}
                 buttonEvent={context.showPlug}
-            />
+            />}
         </Form>
     );
 };

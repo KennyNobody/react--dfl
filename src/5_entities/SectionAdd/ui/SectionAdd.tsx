@@ -3,16 +3,14 @@ import classNames from "classnames";
 import scrollbar from "6_shared/styles/scrollbar.module.scss";
 import Icon from "6_shared/assets/icons/icon-fly.svg";
 import {useContext} from "react";
-import {FormContext} from "3_widgets/FormRegular/context/context";
 
 interface SectionAddProps {
     classname?: string;
     buttonEvent: any;
+    context: any;
 }
 
-export const SectionAdd = ({classname, buttonEvent}: SectionAddProps) => {
-    let context = useContext(FormContext);
-
+export const SectionAdd = ({classname, buttonEvent, context}: SectionAddProps) => {
     return (
         <div className={classNames(styles['form'], styles[classname])}>
             <div className={classNames(styles['form__content'], scrollbar['scrollbar'])}>

@@ -39,14 +39,14 @@ export const FormCustoms = ({serviceTitle}: FormProps) => {
 
     const [tabIndex, setTabIndex] = useState<number>(0);
     const [formFullSize, setFormFullSize] = useState<boolean>(false);
-    const [alertVisible, setAlertVisible] = useState<boolean>(false);
+    const [alertVisible, setAlertVisible] = useState<number>(null);
     const [sectionAdded, setSectionAdded] = useState<boolean>(false);
     const [plugDisabled, setPlugDisabled] = useState<boolean>(false);
 
     const [placesList, setPlacesList] = useState<[]>([]);
 
     const formMethods = useForm<FormInterface>({
-        mode: "onChange",
+        // mode: "onChange",
         shouldUnregister: false
     });
 
@@ -56,7 +56,7 @@ export const FormCustoms = ({serviceTitle}: FormProps) => {
         if (tabIndex !== 0) setFormFullSize(true);
         else setFormFullSize(false);
 
-        setAlertVisible(false);
+        setAlertVisible(null);
     }, [tabIndex]);
 
     const updatePlacesList = (val: string, type: 'from' | 'to') => {
@@ -80,7 +80,7 @@ export const FormCustoms = ({serviceTitle}: FormProps) => {
         }
     }, []);
 
-    const closeModal = (): void => setAlertVisible(false);
+    const closeModal = (): void => setAlertVisible(null);
 
     const isValidSection = (): boolean => {
         const tabName =
@@ -97,12 +97,12 @@ export const FormCustoms = ({serviceTitle}: FormProps) => {
         if (index < prevIndexRef.current) {
             if (index !== 0) setFormFullSize(true);
             else setFormFullSize(false);
-            setAlertVisible(false);
+            setAlertVisible(null);
             setTabIndex(index);
         } else {
             formMethods.trigger().then(() => {
                 if (isValidSection()) setTabIndex(index);
-                else setAlertVisible(true);
+                else setAlertVisible(1);
             });
         }
     }
@@ -114,7 +114,7 @@ export const FormCustoms = ({serviceTitle}: FormProps) => {
                 data['serviceName'] = serviceTitle;
                 sendData(data);
             }
-            else setAlertVisible(true);
+            else setAlertVisible(1);
         });
     }
 
@@ -139,7 +139,7 @@ export const FormCustoms = ({serviceTitle}: FormProps) => {
                 else if (!sectionAdded) addSection();
                 else console.error('Такого условия нет');
             } else {
-                setAlertVisible(true);
+                setAlertVisible(1);
             }
         });
     }
@@ -152,12 +152,10 @@ export const FormCustoms = ({serviceTitle}: FormProps) => {
     const fromCountry = formMethods.watch('fromCountry');
 
     useEffect(() => {
-        console.log('Сбрасываем город');
         formMethods.setValue('fromCity', null);
     }, [fromCountry]);
 
     useEffect(() => {
-        console.log('Сбрасываем город');
         formMethods.setValue('toCity', null);
     }, [toCountry]);
 
@@ -240,7 +238,7 @@ export const FormCustoms = ({serviceTitle}: FormProps) => {
                         ))}
                     </Tabs>
 
-                    {alertVisible && <Alert closeModal={closeModal}/>}
+                    {alertVisible && <Alert errorId={alertVisible} closeModal={closeModal}/>}
                 </Wrapper>
             </FormContext.Provider>
         </FormProvider>

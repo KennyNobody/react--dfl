@@ -1,5 +1,5 @@
 import styles from "./FormRegularCargo.module.scss";
-import React, {useContext, useEffect} from "react";
+import React, {useContext} from "react";
 import classNames from "classnames";
 import {useFormContext, useForm} from "react-hook-form";
 import grid from "6_shared/styles/columns.module.scss";
@@ -31,20 +31,8 @@ interface FormCargoProps {
 export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
     let context = useContext(FormContext);
     const { register, watch } = useForm();
-    const files = watch('isFiles');
-
-
     const {getValues} = useFormContext();
-
-    useEffect(() => {
-        console.log(files);
-    }, [files]);
-
     const transportVariation = watch('transportVariation');
-
-    useEffect(() => {
-        console.log(transportVariation);
-    }, [transportVariation]);
 
     const renderList = () => {
         const components = [];
@@ -235,7 +223,7 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
     return (
         <Form>
             {!context.plugMode && mainForm}
-            {context.plugMode && <SectionAdd buttonEvent={context.nextSection} /> }
+            {context.plugMode && <SectionAdd context={context} buttonEvent={context.nextSection} /> }
             {!context.plugMode && <ButtonNext
                 text={buttonText}
                 buttonEvent={context.showPlug}

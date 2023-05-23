@@ -1,5 +1,5 @@
 import styles from "./FormMiltimodalCargo.module.scss";
-import React, {useContext, useEffect} from "react";
+import React, {useContext} from "react";
 import classNames from "classnames";
 import {useFormContext} from "react-hook-form";
 import grid from "6_shared/styles/columns.module.scss";
@@ -56,11 +56,11 @@ export const FormMiltimodalCargo = ({innerRef, buttonText}: FormCargoProps) => {
     return (
         <Form>
             {!context.plugMode && mainForm}
-            {context.plugMode && <SectionAdd buttonEvent={context.nextSection} /> }
-            <ButtonNext
+            {context.plugMode && <SectionAdd context={context} buttonEvent={context.nextSection} /> }
+            {!context.plugMode && <ButtonNext
                 text={buttonText}
                 buttonEvent={context.showPlug}
-            />
+            />}
         </Form>
     )
 };

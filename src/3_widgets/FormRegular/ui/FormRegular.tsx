@@ -64,8 +64,6 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
                 setIsMultiItems(true);
             }
 
-            console.log('Переключили', checkboxValue);
-
         }, [checkboxValue]);
     }
 

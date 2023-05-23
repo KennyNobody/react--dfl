@@ -8,7 +8,7 @@ import {FormRegular} from "3_widgets/FormRegular/ui/FormRegular";
 export const PageModal = () => {
     return (
         <Page type={'regular'}>
-            <Title text={'Мы предлагаем регулярные мультимодальные перевозки'} />
+            <Title text={'Мы предлагаем регулярные железнодорожные перевозки'} />
             <FormRegular
                 formType={'modal'}
                 serviceTitle={5}
