@@ -1,16 +1,16 @@
 import classNames from 'classnames';
 import cls from './Radio.module.scss';
 import {useFormContext} from "react-hook-form";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 interface RadioProps {
     className?: string
 }
 
 export const Radio = ({className}: RadioProps) => {
-    const { register, formState: {errors}, setValue } = useFormContext();
+    const { register, formState: {errors}, setValue, getValues } = useFormContext();
 
-    const [selectedOption, setSelectedOption] = useState(Number(1));
+    const [selectedOption, setSelectedOption] = useState(getValues('transportVariation') || Number(1));
 
     function handleOptionChange(event: { target: { value: any; }; }) {
         setSelectedOption(+event.target.value);

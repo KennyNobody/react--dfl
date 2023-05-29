@@ -1,21 +1,26 @@
 import style from "./ItemCargo.module.scss";
 import classNames from "classnames";
 import React, {ReactNode} from "react";
+import Icon from '6_shared/assets/icons/icon-add.svg';
+import {ButtonAdding} from "6_shared/ui/ButtonAdding";
+import {useFormContext} from "react-hook-form";
 
 interface ItemCargoProps {
     children: ReactNode;
     context: any;
     index: number;
-    isActive: boolean;
 }
 
-export const ItemCargo = ({children, index, isActive}: ItemCargoProps) => {
+export const ItemCargo = ({children, index, context}: ItemCargoProps) => {
+    const {getValues} = useFormContext();
+
     return (
         <div className={classNames(style['wrapper'])}>
-            {!isActive && <div className={classNames(style['header'])}>
+            {(context.formType == 'groupage' || getValues('transportVariation') === 2) && <div className={classNames(style['header'])}>
                 <p className={classNames(style['title'])}>
-                    Груз №{index}
+                    Грузовое место №{index}
                 </p>
+                <ButtonAdding context={context}/>
             </div>}
             <div className={classNames(style['main'])}>
                 { children }

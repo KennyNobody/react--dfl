@@ -14,7 +14,7 @@ import {InputWrapper} from "6_shared/ui/InputWrapper/ui/InputWrapper";
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import stylesTabs from '6_shared/styles/tabs.module.scss';
 import {Textarea} from "6_shared/ui/Textarea/ui/Textarea";
-import {transportType} from "6_shared/data/select";
+import {packageList, transportType} from "6_shared/data/select";
 import {SelectLib} from "6_shared/ui/SelectLib/ui/SelectLib";
 import {Checkbox} from "6_shared/ui/Checkbox/ui/Checkbox";
 import {ButtonAdding} from "6_shared/ui/ButtonAdding";
@@ -30,9 +30,7 @@ interface FormCargoProps {
 
 export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
     let context = useContext(FormContext);
-    const { register, watch } = useForm();
     const {getValues} = useFormContext();
-    const transportVariation = watch('transportVariation');
 
     const renderList = () => {
         const components = [];
@@ -40,7 +38,7 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
         for (let i = 1; i <= context.itemsList; i++) {
             components.push(
                 <div className={styles['section']}  key={i}>
-                    <ItemCargo context={context} index={i} isActive={context.isMultiItems}>
+                    <ItemCargo context={context} index={i}>
                         <div className={classNames(grid['columns'])}>
                             <div className={classNames(grid['columns__col--12'], grid['columns__col--mob-2'])}>
                                 <Tabs
@@ -160,13 +158,41 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                         />
                     </InputWrapper>
                 </div>
+                {(context.formType === 'regular' && getValues('transportVariation') !== 2) &&
+                    <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob-2'])}>
+                        <InputWrapper title='Груз упакован' isRequired={false}>
+                            <SelectLib
+                                listArr={packageList}
+                                name={'package'}
+                                placeholder={'Выберите способ'}
+                                isRequired={false}
+                                isMulti={false}
+                            />
+                        </InputWrapper>
+                    </div>
+                }
+
+                {(getValues('transportVariation') !== 2 && context.formType === 'regular') &&
+                    <div className={classNames(grid['columns__col--6'], grid['columns__col--mob-2'])}>
+                        <InputWrapper title={'Общий объем'} isRequired={true}>
+                            <Input
+                                isRequired={true}
+                                placeholderProp={'Укажите объем'}
+                                typeProp={'number'}
+                                name={`volume`}
+                                caption={'М3'}
+                            />
+                        </InputWrapper>
+                    </div>
+                }
+
                 <div className={classNames(grid['columns__col--6'], grid['columns__col--mob-2'])}>
-                    <InputWrapper title='Вес' isRequired={true}>
+                    <InputWrapper title={'Общий вес'} isRequired={true}>
                         <Input
                             isRequired={true}
                             placeholderProp={'Укажите вес'}
                             typeProp={'number'}
-                            name={`weight`}
+                            name={'fullWeight'}
                             caption={'Кг'}
                         />
                     </InputWrapper>
@@ -193,6 +219,31 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                         />
                     </InputWrapper>
                 </div>
+                {(getValues('transportVariation') !== 2 && context.formType === 'regular') && <div className={classNames(grid['columns__col--12'], grid['columns__col--mob-2'])}>
+                    <InputWrapper title='Максимальный размер грузового места' isRequired={true}>
+                        <div className={classNames(stylesTabs['content'])}>
+                            <Input
+                                isRequired={true}
+                                placeholderProp={'Длина'}
+                                typeProp={'number'}
+                                name={`items.item-1.length`}
+                            />
+                            <Input
+                                isRequired={true}
+                                placeholderProp={'Ширина'}
+                                typeProp={'number'}
+                                name={`items.item-1.width`}
+                            />
+                            <Input
+                                isRequired={true}
+                                placeholderProp={'Высота'}
+                                typeProp={'number'}
+                                caption={'М'}
+                                name={`items.item-1.height`}
+                            />
+                        </div>
+                    </InputWrapper>
+                </div>}
                 <div className={classNames(grid['columns__col--12'], grid['columns__col--mob-2'])}>
                     <InputWrapper title='Требуемый тип ТС' isRequired={true}>
                         <SelectLib
@@ -208,15 +259,13 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                     <InputWrapper title='Таможенные коды (6 симв.)' isRequired={true}>
                         <Textarea
                             isRequired={true}
-                            nameProps={`Укажите таможенные коды`}
-                            placeholderProp={'Введите описание'}
+                            nameProps={`customsCodes`}
+                            placeholderProp={'Укажите таможенные коды'}
                         />
                     </InputWrapper>
                 </div>
             </div>
-            {renderList()}
-
-            {getValues('transportVariation') === 2 && <ButtonAdding context={context} />}
+            {(getValues('transportVariation') === 2 || context.formType === 'groupage') && renderList()}
         </>
     )
 

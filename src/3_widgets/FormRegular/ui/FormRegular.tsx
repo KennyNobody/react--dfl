@@ -42,8 +42,7 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
     const [alertVisible, setAlertVisible] = useState<number>(null);
     const [sectionAdded, setSectionAdded] = useState<boolean>(false);
     const [plugDisabled, setPlugDisabled] = useState<boolean>(false);
-    // const [isMultiItems, setIsMultiItems] = useState<boolean>(formType === 'groupage');
-    const [isMultiItems, setIsMultiItems] = useState<boolean>(true);
+    const [isMultiItems, setIsMultiItems] = useState<boolean>(false);
     const [placesList, setPlacesList] = useState<[]>([]);
 
     const formMethods = useForm<FormInterface>({
@@ -54,7 +53,14 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
         }
     });
 
+    useEffect(() => {
+        if (!formMethods.getValues('transportVariation')) {
+            formMethods.setValue('transportVariation', 1);
+        }
+    }, []);
+
     if (formType !== 'groupage') {
+
         const checkboxValue = formMethods.watch('transportVariation');
 
         useEffect(() => {
@@ -63,7 +69,6 @@ export const FormRegular = ({serviceTitle, formType}: FormProps) => {
             } else {
                 setIsMultiItems(true);
             }
-
         }, [checkboxValue]);
     }
 

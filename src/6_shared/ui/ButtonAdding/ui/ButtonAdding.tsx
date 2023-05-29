@@ -15,7 +15,7 @@ export const ButtonAdding = ({context}: ButtonAddingProps) => {
             className={classNames(cls['button'])}
         >
             <span className={classNames(cls['caption'])}>
-                Добавить груз
+                Добавить место
             </span>
             <Icon className={classNames(cls['icon'])} />
         </button>

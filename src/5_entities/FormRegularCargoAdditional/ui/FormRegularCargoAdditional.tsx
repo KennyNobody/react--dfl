@@ -55,19 +55,19 @@ export const FormRegularCargoAdditional = ({innerRef, buttonText}: FormCargoRegu
                 </div>
             </div>
             <div className={classNames(grid['columns'], styles['section'])}>
-                    {context.formType === ('groupage' || 'regular') &&
-                        <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
-                            <InputWrapper title='Груз упакован' isRequired={false}>
-                                <SelectLib
-                                    listArr={packageList}
-                                    name={'package'}
-                                    placeholder={'Выберите способ'}
-                                    isRequired={false}
-                                    isMulti={true}
-                                />
-                            </InputWrapper>
-                        </div>
-                    }
+                {(context.formType === 'groupage' || getValues('transportVariation') !== 1) &&
+                    <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
+                        <InputWrapper title='Груз упакован' isRequired={false}>
+                            <SelectLib
+                                listArr={packageList}
+                                name={'package'}
+                                placeholder={'Выберите способ'}
+                                isRequired={false}
+                                isMulti={false}
+                            />
+                        </InputWrapper>
+                    </div>
+                }
                 <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob-2'])}>
                     <InputWrapper title='Дополнительные услуги DFL' isRequired={false}>
                         <SelectLib
@@ -80,7 +80,7 @@ export const FormRegularCargoAdditional = ({innerRef, buttonText}: FormCargoRegu
                     </InputWrapper>
                 </div>
                 <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob-2'])}>
-                    <InputWrapper title='Среднее число отправок в год' isRequired={false}>
+                    <InputWrapper title='Среднее число отправок в месяц' isRequired={false}>
                         <Input
                             isRequired={false}
                             placeholderProp={'Укажите количество'}
@@ -107,17 +107,6 @@ export const FormRegularCargoAdditional = ({innerRef, buttonText}: FormCargoRegu
                             placeholderProp={'Укажите номер UN'}
                             typeProp={'text'}
                             name={'unNumber'}
-                        />
-                    </InputWrapper>
-                </div>
-                <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
-                    <InputWrapper title='Вес грузовых мест' isRequired={false}>
-                        <Input
-                            isRequired={false}
-                            placeholderProp={'Укажите вес'}
-                            typeProp={'number'}
-                            name={'fullWeight'}
-                            caption={'Кг'}
                         />
                     </InputWrapper>
                 </div>

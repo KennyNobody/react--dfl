@@ -90,7 +90,7 @@ export const FormCustomsUser = ({innerRef, buttonText}: FormUserInfoProps) => {
                         <Input
                             isRequired={true}
                             placeholderProp={'Укажите ИНН'}
-                            typeProp={'text'}
+                            typeProp={'number'}
                             name={'INN'}
                         />
                     </InputWrapper>

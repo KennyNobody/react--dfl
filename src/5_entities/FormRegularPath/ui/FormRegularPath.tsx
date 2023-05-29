@@ -14,6 +14,7 @@ import {Caption} from "6_shared/ui/Caption/Caption";
 import {ButtonNext} from "6_shared/ui/ButtonNext/ui/ButtonNext";
 import {FormContext} from "3_widgets/FormRegular/context/context";
 import {validateDateRange} from "6_shared/helpers/validateDateRange";
+import {fixDateError} from "6_shared/helpers/fixDateError";
 
 interface FormUserInfoProps {
     innerRef: any;
@@ -21,7 +22,7 @@ interface FormUserInfoProps {
 }
 
 export const FormRegularPath = ({innerRef, buttonText}: FormUserInfoProps) => {
-    const { control, watch, getValues, formState: {errors} } = useFormContext();
+    const { control, watch, getValues, setValue, formState: {errors} } = useFormContext();
     let context = useContext(FormContext);
 
     const [startDate, setStartDate] = useState(null);
@@ -29,9 +30,19 @@ export const FormRegularPath = ({innerRef, buttonText}: FormUserInfoProps) => {
     const date = watch('date');
 
     useEffect(() => {
-        setStartDate(date[0]);
-        setEndDate(date[1]);
-        console.log(date);
+        if (date[0] !== null) {
+            setStartDate(date[0]);
+            setValue('dateStart', fixDateError(date[0]));
+        } else {
+            setStartDate(null);
+        }
+
+        if (date[1] !== null) {
+            setEndDate(date[1]);
+            setValue('dateEnd', fixDateError(date[1]));
+        } else {
+            setEndDate(null);
+        }
     }, [date]);
 
     const [cityFromIsDisabled, setCityFromIsDisabled] = useState<boolean>(!!!getValues('fromCity'));

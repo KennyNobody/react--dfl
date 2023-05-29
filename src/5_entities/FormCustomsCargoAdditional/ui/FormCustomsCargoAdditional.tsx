@@ -10,6 +10,8 @@ import {InputWrapper} from "6_shared/ui/InputWrapper/ui/InputWrapper";
 import {ButtonNext} from "6_shared/ui/ButtonNext/ui/ButtonNext";
 import React, {useContext} from "react";
 import {FormContext} from "3_widgets/FormCustoms/context/context";
+import {SelectLib} from "6_shared/ui/SelectLib/ui/SelectLib";
+import {packageList} from "6_shared/data/select";
 
 interface FormCargoProps {
     innerRef: any;
@@ -52,7 +54,7 @@ export const FormCustomsCargoAdditional = ({innerRef, buttonText}: FormCargoProp
                     </InputWrapper>
                 </div>
                 <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob-2'])}>
-                    <InputWrapper title='Ожидаемое количество поставок в год ' isRequired={false}>
+                    <InputWrapper title='Ожидаемое количество поставок в месяц ' isRequired={false}>
                         <Input
                             isRequired={false}
                             placeholderProp={'Укажите количество'}

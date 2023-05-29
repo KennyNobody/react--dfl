@@ -59,7 +59,7 @@ export const FormCustomsCargo = ({innerRef, buttonText}: FormCargoProps) => {
             <TitleSection className={styles.title} text={'Или можете заполнить данные о грузе'} />
             <div className={classNames(grid['columns'], styles['section'])}>
                 <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
-                    <InputWrapper title='Наименование (описание груза)' isRequired={!textareaRequired}>
+                    <InputWrapper title='Наименование (описание) груза' isRequired={!textareaRequired}>
                         <Textarea
                             isRequired={!textareaRequired}
                             nameProps={'cargoDescription'}
