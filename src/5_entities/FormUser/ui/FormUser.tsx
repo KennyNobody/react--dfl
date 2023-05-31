@@ -25,6 +25,7 @@ export const FormUser = ({innerRef, buttonText}: FormUserInfoProps) => {
         <Form>
             <div
                 ref={innerRef}
+                data-section-name={'userRegular'}
                 className={classNames(grid['columns'], styles['section'])}
             >
                 {getValues('fromCity') &&

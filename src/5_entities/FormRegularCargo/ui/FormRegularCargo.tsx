@@ -158,7 +158,7 @@ export const FormRegularCargo = ({innerRef, buttonText}: FormCargoProps) => {
                         />
                     </InputWrapper>
                 </div>
-                {(context.formType === 'regular' && getValues('transportVariation') !== 2) &&
+                {(context.formType === 'regular' && getValues('transportVariation') !== (2 || '2')) &&
                     <div className={classNames(grid['columns__col'], grid['columns__col--6'], grid['columns__col--mob-2'])}>
                         <InputWrapper title='Груз упакован' isRequired={false}>
                             <SelectLib

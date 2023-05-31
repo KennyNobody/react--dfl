@@ -9,8 +9,6 @@ function validateSection(key: number, formData: any): boolean {
     const fields = validateScheme[key];
 
     for (let i = 0; i < fields.length; i++) {
-        console.log(fields[i]);
-
         if (formData.hasOwnProperty(fields[i])) {
             if (fields[i] === 'date' && fields[i][0] === null && fields[i][1] === null) {
                 mode = false;

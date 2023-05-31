@@ -55,7 +55,7 @@ export const FormRegularCargoAdditional = ({innerRef, buttonText}: FormCargoRegu
                 </div>
             </div>
             <div className={classNames(grid['columns'], styles['section'])}>
-                {(context.formType === 'groupage' || getValues('transportVariation') !== 1) &&
+                {(context.formType === 'groupage' || getValues('transportVariation') === (2 || '2')) &&
                     <div className={classNames(grid['columns__col'], grid['columns__col--12'], grid['columns__col--mob-2'])}>
                         <InputWrapper title='Груз упакован' isRequired={false}>
                             <SelectLib
