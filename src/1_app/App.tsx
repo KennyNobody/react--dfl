@@ -22,20 +22,23 @@ import 'swiper/scss/navigation';
 import {Navigation} from "swiper";
 import {SectionInfo} from "3_widgets/SectionInfo";
 import {ResponseServiceArticle} from "6_shared/types/ResponseServiceArticle";
+import {placeholderData} from "6_shared/data/placeholderData";
 import { getData } from "6_shared/requests/services";
+import {getServiceParam} from "6_shared/helpers/getServiceParam";
 
 interface AppProps {
     className?: string
 }
 
 export const App = ({className}: AppProps) => {
-    const [data, setData] = useState<ResponseServiceArticle[] | null>([]);
+    const [data, setData] = useState<ResponseServiceArticle[]>(placeholderData);
     const [tab, setTab] = useState(0);
 
     const buttonHandler = (index: number): void => setTab(index);
 
     useEffect(() => {
         getData(setData);
+        getServiceParam(setTab);
     }, []);
 
     return (
@@ -82,7 +85,7 @@ export const App = ({className}: AppProps) => {
                             })}
                         </aside>
                         <main className={classNames(style['layout__main'])}>
-                            {tab === 0 && <PageTrucking />}
+                            {tab === 0 && <PageTrucking title={data[0].caption}/>}
                             {tab === 1 && <PageGroupage />}
                             {tab === 2 && <PageAir />}
                             {tab === 3 && <PageSea />}

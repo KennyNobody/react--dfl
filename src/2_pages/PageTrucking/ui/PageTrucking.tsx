@@ -3,10 +3,14 @@ import {Title} from "6_shared/ui/Title/Title";
 import {Picture} from "6_shared/ui/Picture/Picture";
 import {FormRegular} from "3_widgets/FormRegular/FormRegular";
 
-export const PageTrucking = () => {
+interface PageTruckingProps {
+    title?: string;
+}
+
+export const PageTrucking = ({title}: PageTruckingProps) => {
     return (
         <Page type={'regular'}>
-            <Title text={'Мы предлагаем регулярные грузовые автоперевозки'}/>
+            <Title text={title}/>
             <FormRegular
                 formType={'regular'}
                 serviceTitle={1}

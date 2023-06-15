@@ -3,6 +3,7 @@ interface ResponseServiceArticle {
     title: string;
     picture: string;
     content: string;
+    caption: string;
 }
 
 export {
